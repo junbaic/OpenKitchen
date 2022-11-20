@@ -1,0 +1,50 @@
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.rate-button{
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    background-color: rgba(20,95,72,1);
+    color: rgba(255,245,234,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-family:'TT commons';
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.rate-modal--title{
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-family:'TT commons';
+}
+
+.rate-modal--para{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-family:'TT commons';
+    font-weight: 400;
+}
+
+.ant-rate-text{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    min-height: 2rem;
+    font-family:'TT commons';
+    color: rgba(33,33,33,1);
+    margin-top: 1rem;
+}

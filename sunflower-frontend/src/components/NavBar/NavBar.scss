@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.NavBar-container{
+    display: flex;
+    padding: 12px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #e1ddd8;
+    z-index: 999;
+}
+
+.NavBar--logo{
+    display: flex;
+    align-items: center;
+    font: {
+        size: 24px;
+        family: 'Ubuntu', sans-serif;
+        weight: 1000;
+    }
+
+}
+
+.NavBar--search-input{
+    // height: 43px;
+    max-width: 300px;
+    flex-basis: 512px;
+    margin: 0 26px 0 auto;
+}
+
+.NavBar--avatar{
+    margin-right: 33px;
+    display: flex;
+    align-items: center;
+    
+    
+}

@@ -1,0 +1,49 @@
+Week 1
+Group formed. I created my own jira account and joined the team on github. 
+We have selected Meal Recommendation System as the project. 
+We have determined the work content and I am responsible for the front-end.
+Next week plan: our team plans to work for the proposal.
+
+Week2
+We have determined the division of the proposal job. 
+I wrote some user stories and drew some interfaces and flow diagrams.
+Next week plan: our team plans to integrate the proposal and submit the final version of the proposal. And we are going to start programming as arranged.
+
+Week3
+Modify user stories of sprint 2 in proposal.
+Modify the flow diagram in proposal.
+Learn the front-end on my own.
+Next week plan: start code.
+
+Week4
+Finish Create recipe page display in sprint 1
+Prepare for next sprint
+Next week plan: develop sprint 2
+
+Week5
+Improve recipe page Ui
+Next week plan: Code for recipe detail page
+
+Week6
+Develop a new page - Recipe Detail Page
+Next week plan: Demo B
+
+Week7
+Fix some ui mistake in create recipe page
+develop a new page - recipe detail page
+Next week plan: recipe detail page
+
+Week8
+Develop recipe detail page and fix more mistakes
+Prepare for the next stage of work
+
+Week9
+Develop recommened recipe under the recipe detail page
+Next week plan: report and final-demo
+
+Week10
+Fix minor errors in the code
+Prepare for Demo
+Complete parts of functionality details in report
+Complete User Documentation
+Complete Installation and Prerequisites for front-end

@@ -1,0 +1,29 @@
+@import url(//db.onlinewebfonts.com/c/9ea82c5b601a7f912cb586a1a5569616?family=Lyon+Text+Web+Semibold);
+
+@font-face{
+  font-family:'TT commons';
+  src: local('TT commons'),
+    url('../src/fonts/Regular.woff2') format('woff2');
+  
+}
+
+@font-face{
+  font-family:'TT commons medium';
+  src: local('TT commons medium'),
+    url('../src/fonts/Medium.woff2') format('woff2');
+  
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

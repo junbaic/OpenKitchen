@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login--peace-hand__center{
+    margin: 0 auto;
+    display: block;
+}
+
+.login-title{
+    margin-top: 2rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-family:"Lyon Text Web Semibold";
+}
+
+.loginForm-itemName{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family:'TT commons';
+}
+
+.login-form-button{
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    background-color: rgba(20,95,72,1);
+    color: rgba(255,245,234,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-family:'TT commons';
+    cursor: pointer;
+}
+

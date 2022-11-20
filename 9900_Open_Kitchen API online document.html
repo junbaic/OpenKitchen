@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title>Apipost接口文档</title>
+    <link href="https://img.cdn.apipost.cn/docs/css7/style.css?20220909" rel="stylesheet">
+    <link href="https://img.cdn.apipost.cn/docs/css/font-awesome-4.7.0/css/font-awesome.min.css?20220909" rel="stylesheet">
+    <link href="https://img.cdn.apipost.cn/docs/css7/github.css?20220909" rel="stylesheet">
+    <link rel="stylesheet" href="https://img.cdn.apipost.cn/docs/css7/content-v7.css?20220909">
+    <link href="https://img.cdn.apipost.cn/docs/css7/json-viewer.css?20220909" rel="stylesheet">
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js/jquery-3.4.1.min.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js7/marked.min.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js7/template-web.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js7/highlight.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js7/clipboard.min.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js7/crypto-js.min.js?20220909" charset="utf-8"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js/json5.min.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js/dayjs.min.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js/url-join.js?20220909"></script>
+    <!-- <script type="text/javascript" src="./js/enc.min.js"></script> -->
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js/json-viewer.min.js?20220909"></script>
+    <script type="text/javascript" src="https://img.cdn.apipost.cn/docs/js/lodash.min.js?20220909"></script>
+    <script type="text/javascript">
+        consoleLog = console.log; // 重写 consoleLog
+        $(function () {
+
+        })
+    </script>
+</head>
+
+<body>
+<div class="apipost-doc-body">
+    <div class="apipost-doc-body-main">
+        <div class="apipost-doc-body-nav">
+            <div class="logo">
+                <a href="https://www.apipost.cn/"><img class="project-logo" src="https://img.cdn.apipost.cn/docs/images7/logo.svg" /></a>
+            </div>
+            <div class="apipost-doc-body-nav-search">
+                <img src="https://img.cdn.apipost.cn/docs/images7/search-icon.svg">
+                <input type="text" name="search-input" placeholder="搜索目录、接口。支持 名称、URL、Method 搜索">
+            </div>
+            <div class="apipost-doc-body-nav-title"> 项目名 </div>
+            <div class="apipost-doc-body-nav-list">
+                <ul>
+                    <li data-type="global" data-parent_id="0" data-target_id="001" data-indent="0"
+                        class="global active">
+                        <a class="load-data-btn" href="javascript:;" data-type="global" data-parent_id="0"
+                           data-target_id="001" data-indent="0">全局公共参数</a>
+                    </li>
+                </ul>
+                <ul class="apipost-left-nav-template">
+                    <script type="text/html" id="apipost-left-nav-template-tpl">
+                        {{if _.isArray(list)}}
+                        {{each list item}}
+                        {{if !item.indent}}
+                        {{set indent = item.indent = 0}}
+                        {{/if}}
+                        <li data-type="{{item.target_type}}" data-parent_id="{{item.parent_id}}" data-target_id="{{item.target_id}}" data-indent="{{item.indent}}" class="{{item.target_type}} {{if target_id == item.target_id}}active{{/if}} {{if item.indent != 0}}is-hidden{{/if}}" style="padding-left: {{item.indent?item.indent:0}}em;">
+                            {{if item.target_type == 'folder' || item.example_type == 'folder'}}
+                            <a class="load-data-btn" href="javascript:;" data-type="{{item.target_type}}" data-parent_id="{{item.parent_id}}" data-target_id="{{item.local_target_id}}" data-indent="{{item.indent}}"><i class="fa fa-caret-down"></i>{{item.name}}</a>
+                            {{else if item.target_type == 'websocket' || item.example_type == 'websocket'}}
+                            <a class="load-data-btn" href="javascript:;" data-type="{{item.target_type}}" data-parent_id="{{item.parent_id}}" data-target_id="{{item.local_target_id}}" data-indent="{{item.indent}}"><em class="method websocket">WS</em><span>{{item.name}}</span></a>
+                            {{else if item.target_type == 'doc' || item.example_type == 'doc'}}
+                            <a class="load-data-btn" href="javascript:;" data-type="{{item.target_type}}" data-parent_id="{{item.parent_id}}" data-target_id="{{item.local_target_id}}" data-indent="{{item.indent}}"><em class="method doc">文本</em><span>{{item.name}}</span></a>
+                            {{else if item.target_type == 'grpc' || item.example_type == 'grpc'}}
+                            <a class="load-data-btn" href="javascript:;" data-type="{{item.target_type}}" data-parent_id="{{item.parent_id}}" data-target_id="{{item.local_target_id}}" data-indent="{{item.indent}}"><em class="method grpc">GRPC</em><span>{{item.name}}</span></a>
+                            {{else}}
+                            <a class="load-data-btn" href="javascript:;" data-type="{{item.target_type}}" data-parent_id="{{item.parent_id}}" data-target_id="{{item.local_target_id}}" data-indent="{{item.indent}}"><em class="method {{item.method}}">{{item.method}}</em><span>{{item.name}}</span></a>
+                            {{/if}}
+                            {{if item.target_type != 'folder' && item.color}}
+                            <span style="margin-left:5px;display:inline-block;width:6px;height:6px;border-radius:50%;background-color: {{item.color}};"></span>
+
+
+
+                            {{/if}}
+                            {{if item.target_type == 'example'}}
+                            <svg style="margin-left:5px;" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.91033 6.68207H3.30033C3.09013 6.68207 2.94513 6.4768 3.01993 6.28529L4.61973 2.18849C4.64137 2.13306 4.67976 2.08536 4.72982 2.0517C4.77987 2.01804 4.83923 2.00001 4.90003 2H7.59962C7.81262 2 7.95782 2.21054 7.87742 2.40303L6.94592 4.63367H8.69951C8.95741 4.63367 9.09501 4.93026 8.92491 5.11933L4.62553 9.89887C4.41653 10.1313 4.02903 9.92989 4.11013 9.63106L4.91033 6.68207Z" fill="#FFC01E"/>
+                            </svg>
+                            {{/if}}
+                        </li>
+                        {{if _.isArray(item.children)}}
+                        {{each item.children as childrenItem key}}
+                        {{if item.children[key].indent}}
+                        {{set indent = item.children[key].indent = item.children[key].indent+2}}
+                        {{else}}
+                        {{set indent = item.children[key].indent = item.indent + 2}}
+                        {{/if}}
+                        {{/each}}
+
+                        {{set _recursiveList ={list:item.children}; }}
+                        {{include 'apipost-left-nav-template-tpl' _recursiveList}}
+                        {{/if}}
+                        {{/each}}
+                        {{/if}}
+                    </script>
+                </ul>
+            </div>
+            <div class="apipost-doc-body-nav-drag-bar"></div>
+        </div>
+        <div class="apipost-doc-body-content">
+            <div class="apipost-doc-wrap">
+                <script type="text/html" id="apipost-doc-wrap-tpl">
+                    <div class="apipost-doc-wrap-title">
+                        <h2 class="title" data-text="{{data.name}}" id="{{data.name}}">
+                            <div class="mobile-nav-toggle-btn">
+                                <a href="javascript:;" class="mobile-nav-toggle-link-btn"><i class="fa fa-reorder"></i></a>
+                            </div>
+                            <div class="title-text">{{data.name}}</div>
+                            {{if data.target_type == 'api' || data.example_type == 'api'}}
+                            <button type="button" class="copy-clipboard" data-clipboard-text="{{JSON.stringify(data.copyData)}}"><i class="fa fa-copy"></i> 复制接口 </button>
+                            {{/if}}
+                            {{if data.target_type == 'api' || data.target_type == 'grpc' || data.target_type == 'websocket' || data.example_type == 'api' || data.example_type == 'grpc' || data.example_type == 'websocket'}}
+                            <a type="button" class="copy-clipboard" data-clipboard-text="{{JSON.stringify(data)}}" href="https://v7.apipost.cn/#/apis/run?target_id={{data.target_id}}" target="_blank">去调试</a>
+                            {{/if}}
+                        </h2>
+                    </div>
+                    <div class="apipost-doc-wrap-desc">
+                        <!-- 创建人：哈利厄 最后更新：哈利厄 &nbsp;&nbsp; -->
+                        创建时间：{{data.format_create_dtime}} &nbsp;&nbsp;更新时间：{{data.format_update_dtime}}
+                    </div>
+                    {{if _.has(data, 'request.description')}}
+                    <div class="apipost-doc-wrap-para-markdown">
+                        <div class="markdown-section">{{@marked(data.request.description)}}</div>
+                    </div>
+                    {{/if}}
+                    {{if data.target_type == 'grpc' || data.example_type == 'grpc'}}
+                    <h3 class="apipost-doc-wrap-para-title" data-text="基本信息" id="基本信息">
+                        <i class="fa fa-wpforms"></i>
+                        <span>基本信息</span>
+                    </h3>
+                    <ul class="apipost-doc-wrap-base-para">
+                        {{if _.has(data, 'formatMark') && _.isObject(data.formatMark)}}
+                        <li><span>接口状态： </span><span style="color: {{data.formatMark.color}};">{{data.formatMark.name}}</span> </li>
+                        {{/if}}
+                    </ul>
+                    {{if _.has(data, 'protos') && _.isObject(data.protos) && Object.values(data.protos).length > 0}}
+                    <h3 class="apipost-doc-wrap-para-title" data-text="方法列表" id="方法列表">
+                        <i class="fa fa-wpforms"></i>
+                        <span>方法列表</span>
+                    </h3>
+                    {{each data.protos item key}}
+                    {{if _.has(item, 'services') && _.isObject(item.services) && !_.isEmpty(item.services)}}
+                    <h4 class="apipost-doc-wrap-para-title" data-text="{{key}}" id="{{key}}">
+                        <span>{{key}}</span>
+                    </h4>
+                    <div class="apipost-doc-paras" for-id="{{key}}">
+                        {{each item.services service namespace}}
+                        {{if _.isObject(service)}}
+                        {{each service method methodName}}
+                        <h5 data-text="{{namespace}}/{{methodName}}" id="{{namespace}}/{{methodName}}"><a name="{{key}}/{{namespace}}/{{methodName}}">[method]</a> {{key}}/{{namespace}}/{{methodName}}</h5>
+                        <ul class="apipost-doc-wrap-base-para">
+                            <li><span>方法名： </span><span><i class="copy-clipboard"  data-clipboard-text="{{methodName}}">{{methodName}}</i></span> </li>
+                            <li><span>服务地址： </span><span><i class="copy-clipboard"  data-clipboard-text="{{method.url}}">{{method.url}}</i></span> </li>
+                        </ul>
+                        {{if _.has(method, 'request.body.raw') && method.request.body.raw != ''}}
+                        <h6 data-text="请求参数" id="请求参数">请求参数</h6>
+                        <div class="apipost-raw-json request-body-json-view">
+                            <button type="button" class="copy-clipboard" data-clipboard-text="{{method.request.body.raw}}"><i class="fa fa-clipboard"></i>复制</button>
+                            <input type="hidden" id="request-body-raw-editor-input-{{methodName}}" value='{{method.request.body.raw}}'>
+                            <pre class="request-body-raw-editor-json" id="request-body-raw-editor-json-{{methodName}}"><code class="json">{{method.request.body.raw}}</code></pre>
+                        </div>
+                        {{if _.has(method, 'request.body.parameter') && _.isArray(method.request.body.parameter) && method.request.body.parameter.length > 0}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each method.request.body.parameter item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{/if}}
+                        {{if _.has(method, 'response') && _.isObject(method.response) && !_.isEmpty(method.response)}}
+                        {{each method.response response name}}
+                        {{if response.raw != ''}}
+                        <h6 data-text="{{name == 'success' ? '成功响应示例':'错误响应示例'}}" id="{{name == 'success' ? '成功响应示例':'错误响应示例'}}">{{name == 'success' ? '成功响应示例':'错误响应示例'}}</h6>
+                        <div class="apipost-raw-json response-body-json-view">
+                            <button type="button" class="copy-clipboard" data-clipboard-text="{{response.raw}}"><i class="fa fa-clipboard"></i>复制</button>
+                            <input type="hidden" id="response-body-raw-editor-input-{{name}}" value='{{response.raw}}'>
+                            <pre class="request-body-raw-editor-json" id="response-body-raw-editor-json-{{name}}"><code class="json">{{response.raw}}</code></pre>
+                        </div>
+                        {{if _.has(response, 'parameter') && _.isArray(response.parameter) && response.parameter.length > 0}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each response.parameter item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td>
+                                    <pre>{{item.value}}</pre>
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{/if}}
+                        {{/each}}
+                        {{/if}}
+                        <hr>
+                        {{/each}}
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                    {{/if}}
+                    {{/if}}
+                    {{if data.target_type == 'folder'}}
+                    <h3 class="apipost-doc-wrap-para-title" data-text="目录参数" id="目录参数">
+                        <i class="fa fa-wpforms"></i>
+                        <span>目录参数</span>
+                    </h3>
+                    <div class="apipost-doc-paras" for-id="目录参数">
+                        {{if _.has(data, 'request.header') && _.isArray(data.request.header) && data.request.header.length > 0}}
+                        <h4 data-text="Header 请求参数" id="Header 请求参数">Header 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.header item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.query') && _.isArray(data.request.query) && data.request.query.length > 0}}
+                        <h4 data-text="Query 请求参数" id="Query 请求参数">Query 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.query item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.body') && _.isArray(data.request.body) && data.request.body.length > 0}}
+                        <h4 data-text="Body 请求参数" id="Body 请求参数">Body 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.body item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.type == 'File' ? '[文件路径]':item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.type == 'File' ? '[文件类型]':item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                    {{if data.target_type == 'global'}}
+                    <div class="apipost-global-tips">
+                        说明：全局公共参数是针对项目而言的，所有请求的 HTTP 类型的接口都需要携带此参数。
+                    </div>
+                    <h3 data-text="全局公共参数" id="全局公共参数" class="apipost-doc-wrap-para-title">
+                        <i class="fa fa-wpforms"></i>
+                        <span>全局公共参数</span>
+                    </h3>
+                    <div class="apipost-doc-paras" for-id="全局公共参数">
+                        {{if _.has(data, 'request.header') && _.isArray(data.request.header) && data.request.header.length > 0}}
+                        <h4 data-text="Header 请求参数" id="Header 请求参数" >Header 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+
+
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.header item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+
+
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.query') && _.isArray(data.request.query) && data.request.query.length > 0}}
+                        <h4 data-text="Query 请求参数" id="Query 请求参数">Query 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+
+
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.query item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+
+
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.body') && _.isArray(data.request.body) && data.request.body.length > 0}}
+                        <h4 data-text="Body 请求参数" id="Body 请求参数">Body 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+
+
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.body item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.type == 'File' ? '[文件路径]':item.value}}</pre>
+                                    {{/if}}
+                                </td>
+
+
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                    {{if data.target_type == 'websocket' || data.example_type == 'websocket'}}
+                    <h3 data-text="基本信息" id="基本信息" class="apipost-doc-wrap-para-title">
+                        <i class="fa fa-wpforms"></i>
+                        <span>基本信息</span>
+                    </h3>
+                    <ul class="apipost-doc-wrap-base-para">
+                        {{if _.has(data, 'formatMark') && _.isObject(data.formatMark)}}
+                        <li><span>接口状态： </span><span style="color: {{data.formatMark.color}};">{{data.formatMark.name}}</span> </li>
+                        {{/if}}
+                        <li><span>接口URL： </span><span><em class="method {{data.method}}">{{data.method}}</em>
+                                <i class="copy-clipboard"  data-clipboard-text="{{data.url}}">{{data.url}}</i></span> </li>
+                    </ul>
+                    {{/if}}
+                    {{if data.target_type == 'api' || data.example_type == 'api'}}
+                    <h3 data-text="基本信息" id="基本信息" class="apipost-doc-wrap-para-title">
+                        <i class="fa fa-wpforms"></i>
+                        <span>基本信息</span>
+                    </h3>
+                    <ul class="apipost-doc-wrap-base-para">
+                        {{if _.has(data, 'formatMark') && _.isObject(data.formatMark)}}
+                        <li><span>接口状态： </span><span style="color: {{data.formatMark.color}};">{{data.formatMark.name}}</span> </li>
+                        {{/if}}
+                        <li><span>接口URL： </span><span><em class="method {{data.method}}">{{data.method}}</em>
+                                <i class="copy-clipboard"  data-clipboard-text="{{data.url}}">{{data.url}}</i></span> </li>
+                        {{if data.mock_url != ''}}
+                        <li><span>本地 Mock： </span><span><i class="copy-clipboard"  data-clipboard-text="{{urlJoin('http://127.0.0.1:10393/mock/',data.project_id, data.mock_url,'?apipost_id='+data.target_id.toString().substr(0,6))}}">{{urlJoin('http://127.0.0.1:10393/mock/',data.project_id, data.mock_url,'?apipost_id='+data.target_id.toString().substr(0,6))}}</i><br><a href="https://www.apipost.cn/download.html" target="_blank">需安装 Apipost v7 客户端</a> </span> </li>
+                        {{if data.enable_server_mock > 0}}
+                        <li><span>云端 Mock： </span><span><i class="copy-clipboard"  data-clipboard-text="{{urlJoin('https://console-mock.apipost.cn/mock/',data.project_id, data.mock_url,'?apipost_id='+data.target_id.toString().substr(0,6))}}">{{urlJoin('https://console-mock.apipost.cn/mock/',data.project_id, data.mock_url,'?apipost_id='+data.target_id.toString().substr(0,6))}}</i></span> </li>
+                        {{/if}}
+                        {{/if}}
+                        {{if _.has(data, 'request.body.formatMode')}}
+                        <li><span>Content-Type：</span><span><i class="copy-clipboard" data-clipboard-text="{{data.request.body.formatMode}}">{{data.request.body.formatMode}}</i></span></li>
+                        {{/if}}
+                        {{if _.has(data, 'request.authType')}}
+                        <li><span>认证方式：</span><span><i class="copy-clipboard" data-clipboard-text="{{data.request.authType}}">{{data.request.authType}}</i></span></li>
+                        {{/if}}
+                    </ul>
+                    <h3 data-text="请求参数" id="请求参数" class="apipost-doc-wrap-para-title">
+                        <i class="fa fa-wpforms"></i>
+                        <span>请求参数</span>
+                    </h3>
+                    <div class="apipost-doc-paras" for-id="请求参数">
+                        {{if _.has(data, 'request.header.parameter') && _.isArray(data.request.header.parameter) && data.request.header.parameter.length > 0}}
+                        <h4 data-text="Header 请求参数" id="Header 请求参数" >Header 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.header.parameter item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.query.parameter') && _.isArray(data.request.query.parameter) && data.request.query.parameter.length > 0}}
+                        <h4 data-text="Query 请求参数" id="Query 请求参数" >Query 请求参数</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.query.parameter item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.type == 'File' ? '[文件路径]':item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.resful.parameter') && _.isArray(data.request.resful.parameter) && data.request.resful.parameter.length > 0}}
+                        <h4 data-text="路径参数及说明" id="路径参数及说明" >路径参数及说明</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.resful.parameter item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.type == 'File' ? '[文件路径]':item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{if _.has(data, 'request.body.mode') && data.request.body.mode != 'none'}}
+                        <h4 data-text="Body 请求参数" id="Body 请求参数" >Body 请求参数</h4>
+                        {{if data.request.body.mode == 'form-data' || data.request.body.mode == 'urlencoded'}}
+                        {{if _.has(data, 'request.body.parameter') && _.isArray(data.request.body.parameter) && data.request.body.parameter.length > 0}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.body.parameter item}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.type == 'File' ? '[文件路径]':item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.type == 'File' ? '[文件类型]':item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{else}}
+                        {{if data.request.body.raw != ''}}
+                        <div class="apipost-raw-json request-body-json-view">
+                            <button type="button" class="copy-clipboard" data-clipboard-text="{{data.request.body.raw}}"><i class="fa fa-clipboard"></i>复制</button>
+                            <input type="hidden" id="request-body-raw-editor-input" value='{{data.request.body.raw}}'>
+                            <pre id="request-body-raw-editor-json"><code class="json">{{data.request.body.raw}}</code></pre>
+                        </div>
+                        {{if _.has(data, 'request.body.raw_para') && _.isArray(data.request.body.raw_para) && data.request.body.raw_para.length > 0}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>是否必填</th>
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each data.request.body.raw_para item}}
+                            {{if item.key != ''}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td style="position: relative;">
+                                    {{if item.value_var}}
+                                    {{item.value_var}}
+                                    <img src="https://img.cdn.apipost.cn/v6/docs/img/vars.svg" alt="">
+                                    <div class="vars_title">
+                                        变量{{item.value}} 生成
+                                    </div>
+                                    {{else}}
+                                    <pre>{{item.value}}</pre>
+                                    {{/if}}
+                                </td>
+                                <td>{{(item.not_null >0) ? '是' : '否'}}</td>
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{item.description}}</pre>
+                                </td>
+                            </tr>
+                            {{/if}}
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{/if}}
+                        {{/if}}
+                        {{/if}}
+                    </div>
+                    {{if _.has(data, 'response') && _.isObject(data.response) && Object.values(data.response).length > 0}}
+                    <h3 data-text="响应示例" id="响应示例" class="apipost-doc-wrap-para-title">
+                        <i class="fa fa-wpforms"></i>
+                        <span>响应示例</span>
+                    </h3>
+                    <div class="apipost-doc-paras" for-id="响应示例">
+                        {{each data.response item key}}
+                        {{if _.has(item, 'expect.name') && item.raw != ''}}
+                        <h4 data-text="{{item.expect.name}}（{{item.expect.code}}）" id="{{item.expect.name}}（{{item.expect.code}}）">{{item.expect.name}}（{{item.expect.code}}）</h4>
+                        <div data-type="{{key}}" class="apipost-raw-json response-raw-json-view">
+                            <button type="button" class="copy-clipboard" data-clipboard-text="{{item.raw}}"><i class="fa fa-clipboard"></i>复制</button>
+                            <input type="hidden" id="response-raw-{{key}}-json-input" value='{{item.raw}}'>
+                            <pre id="response-raw-{{key}}-json"><code class="json">{{item.raw}}</code></pre>
+                        </div>
+                        {{if _.has(item, 'parameter') && _.isArray(item.parameter) && item.parameter.length > 0}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <!-- <th>是否必填</th> -->
+                                <th>参数类型</th>
+                                <th>描述说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each item.parameter item}}
+                            {{if item.key != ''}}
+                            <tr>
+                                <td><i class="copy-clipboard"  data-clipboard-text="{{item.key}}">{{item.key}}</i></td>
+                                <td>
+                                    <pre>{{item.value}}</pre>
+                                </td>
+                                <!-- <td>{{(item.not_null >0) ? '是' : '否'}}</td> -->
+                                <td>{{item.field_type}}</td>
+                                <td>
+                                    <pre>{{@replaceOperatorSymbol(item.description)}}</pre>
+                                </td>
+                            </tr>
+                            {{/if}}
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        {{/if}}
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    <footer> 本文档由 <a href="https://www.apipost.cn/" target="_blank">Apipost 接口管理工具 （https://www.apipost.cn）</a>
+                        生成 </footer>
+                </script>
+            </div>
+            <div class="apipost-float-navs">
+                <h2>内容导航</h2>
+                <ul class="apipost-float-nav-template">
+                    <script type="text/html" id="apipost-float-nav-template-tpl">
+                        {{if list.length > 0}}
+                        {{each list item i}}
+                        <li style="text-indent: {{item.indent*16}}px;" {{if i == 0}}class="active"{{/if}} data-id="{{item.id}}"><a href="#{{item.id}}">{{item.text}}</a></li>
+                        {{/each}}
+                        {{else}}
+                        <li style="text-align: center;justify-content: center;">暂无导航数据</li>
+                        {{/if}}
+                    </script>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    // 给 arttemplate 注入新函数
+    template.defaults.imports.JSON = JSON;
+    template.defaults.imports.urlJoin = urlJoin;
+    template.defaults.imports._ = _;
+    template.defaults.imports.marked = function (md) {
+        marked.setOptions({
+            renderer: new marked.Renderer(),
+            highlight(code) {
+                return hljs.highlight('javascript', code).value;
+            },
+            breaks: true,
+            sanitize: true,
+        });
+        return marked.parse(md).replace(/<pre>/g, "<pre class='hljs javascript'>");
+    };
+    template.defaults.imports.Object = Object;
+    template.defaults.imports.keyFormat = function (params) {
+        const arr = params.split('.');
+        let str = '';
+        for (let i = 0; i < arr.length - 1; i++) {
+            str += `<span style="color:#999">${arr[i]}.</span>`;
+        }
+        str += arr[arr.length - 1];
+        return str;
+    };
+    template.defaults.imports.replaceOperatorSymbol = function (originString) {
+        if (!originString || originString=='') {
+            return '';
+        }
+        const result = originString.replace(/&([^&;]+);/g, function (matchStr, b) {
+            const entity = {
+                quot: '"',
+                lt: '<',
+                gt: '>',
+                apos: "'",
+                amp: '&',
+                ldquo: '“',
+                rdquo: '”',
+            };
+            const r = entity[b];
+            return typeof r === 'string' ? r : matchStr;
+        });
+        return result;
+    };
+    template.defaults.imports.markForName = function (key) {
+        try {
+            if (apipostData.project.vars.mark.filter((it) => it.key === key)[0].name) {
+                return apipostData.project.vars.mark.filter((it) => it.key === key)[0].name;
+            }
+            return '开发中';
+        } catch (error) {
+            return '开发中';
+        }
+    };
+
+    // 接口排序
+    function sortData(data, type) {
+        data.sort((a, b) => {
+            // 升序
+            if (type == 'ascending') {
+                if (a.sort != b.sort) {
+                    return a.sort - b.sort;
+                }
+                return a.name.localeCompare(b.name);
+            }
+            // 降序
+            if (type == 'descending') {
+                if (a.sort != b.sort) {
+                    return b.sort - a.sort;
+                }
+                return b.name.localeCompare(a.name);
+            }
+        });
+
+        // 如果有嵌套children且children里面有数据 就递归调用排序函数
+        if (_.isArray(data)) {
+            data.forEach((item) => {
+                if (item.children && item.children.length != 0) {
+                    sortData(item.children, type);
+                }
+            });
+
+            return data;
+        }
+        return [];
+    }
+
+    // 解析 url 并返回数组
+    function GetUrlQuery(uri) {
+        let url = '';
+        if (typeof uri === 'undefined') {
+            url = window.location.search;
+        } else {
+            url = `?${uri.split('?')[1]}`;
+        }
+        const theRequest = {};
+        if (url.indexOf('?') !== -1) {
+            const str = url.substr(1);
+            const strs = str.split('&');
+            for (let i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    // 获取某接口的 所有父target
+    function getParentTargetIDs(collection, target_id, parent_ids = []) {
+        if (_.isArray(collection)) {
+            const item = _.find(collection, _.matchesProperty('target_id', target_id));
+
+            if (item) {
+                parent_ids.push(item.parent_id);
+                getParentTargetIDs(collection, item.parent_id, parent_ids);
+            }
+        }
+
+        return parent_ids;
+    }
+
+    // 获取某接口的 所有子target
+    function getChildrenTargetIDs(collection, target_id, children_ids = []) {
+        if (_.isArray(collection)) {
+            collection.forEach(item => {
+                if (item.parent_id == target_id) {
+                    children_ids.push(item.target_id);
+                    getChildrenTargetIDs(collection, item.target_id, children_ids);
+                }
+            })
+        }
+
+        return children_ids;
+    }
+
+    // // 获取某接口的 所有子target
+    // function getChildrenTargetIDs(collection, target_id, children_ids = []) {
+    //     if (_.isArray(collection)) {
+    //         collection.forEach(item => {
+    //             if (item.target_id == target_id) {
+    //                 if (item.children && _.isArray(item.children)) {
+    //                     item.children.forEach((it) => {
+    //                         children_ids.push(it.target_id);
+    //                         if (it.children && _.isArray(it.children)) {
+    //                             getChildrenTargetIDs(it.children, it.target_id, children_ids);
+    //                         }
+    //                     })
+    //                 }
+    //             }
+    //         })
+    //     }
+    //     return children_ids;
+    // }
+
+    // 接口数据
+    let apipostData = {};
+
+    try {
+        apipostData = {"data":{"id":700176,"local_issue_id":"65c1c3e94a8339f20df32fb5fe1a67b7","local_target_id":"18e59174-5117-4214-a07d-60db721c46ad","project_id":2694681,"name":"9900_Open_Kitchen","url":"0ec675b2ca871891","salt":"4feb3cfaa7193311","password":"","env_id":"-1","create_time":1664982879,"target_id":-1,"target_type":"project","expire_days":-1,"expire_time":-1,"portrait":"https:\/\/img.cdn.apipost.cn\/user\/default_profile_photo\/Vector-3.png","nick_name":"Yinghao","app_web_url":"https:\/\/console-docs.apipost.cn","project_name":"9900_Open_Kitchen","publisher":"Yinghao","pub_name":"9900_Open_Kitchen","project_logo":"","project":{"vars":{"request":{"cookie":[],"header":[],"query":[],"body":[]},"script":{"pre_script":"","test":"","auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}}},"variable":[],"methods":["POST","GET","PUT","PATCH","DELETE","COPY","HEAD","OPTIONS","LINK","UNLINK","PURGE","LOCK","UNLOCK","PROPFIND","VIEW"],"mark":[{"key":"developing","name":"开发中","color":"#3A86FF"},{"key":"complated","name":"已完成","color":"#2BA58F"},{"key":"modifying","name":"需修改","color":"#EC4646"}]}},"children":[{"local_target_id":"b080245b-800e-4e93-9ef6-648cef010d68","local_parent_id":"0","name":"1. User | user register","method":"POST","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":0,"create_dtime":1664980758,"update_dtime":1668249626,"target_id":"b080245b-800e-4e93-9ef6-648cef010d68","create_time":"2022-10-05 22:39:18","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/user\/register","mock_url":"user\/register","new_target_id":"757f8397-f439-46ea-b700-e0068538a637","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/register","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"username\": \"机器猫\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"2536379543@qq.com\",\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/register"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"REGISTER SUCCESS\",\r\n\t\"username\": \"机器猫\",\r\n\t\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJcdTY3M2FcdTU2NjhcdTczMmIiLCJleHBpcnkiOiIyMDIyLTEwLTEyIDA4OjA2OjUyLjU0MTg4MCJ9.ifDDfBx2T3t2F4J8XgmXT0XbBZTLKKIGHfj-2riGVFQ\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"ae05f5f4-86f4-4bb7-8e42-de672e391f70","local_parent_id":"0","name":"2. User | user login","method":"POST","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":1,"create_dtime":1664982660,"update_dtime":1668249638,"target_id":"ae05f5f4-86f4-4bb7-8e42-de672e391f70","create_time":"2022-10-05 23:11:00","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/\/user\/login","mock_url":"\/user\/login","new_target_id":"833a84f0-8115-4ab0-8a52-ea6d368f1fdb","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/\/user\/login","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"username\": \"Delicia\",\r\n    \"password\": \"delicia123\"\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/\/user\/login"},"response":{"success":{"raw":"{\n  \"msg\": \"LOGIN SUCCESS\",\n  \"username\": \"Delicia\",\n  \"email\": \"Delicia123@gmail.com\",\n  \"BIO\": \"Welcome to my kitchen\",\n  \"avatar\": \"https:\/\/i0.wp.com\/www.groundedgirlsguide.com\/wp-content\/uploads\/2016\/10\/GAYLE-ILLUSTRATED-HEADSHOT-HighRes.png?resize=768%2C846\",\n  \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0xOSAxNDoyMjoxMy44ODE0NzEifQ.DU81o7cP9q30PM9FSUULVHlSTzqjDZUkeB4Z4MwN4ws\"\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"2d7ac1ec-038a-4056-8bf2-f675851564cf","local_parent_id":"0","name":"3. User | get current user information","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":2,"create_dtime":1665542861,"update_dtime":1668249647,"target_id":"2d7ac1ec-038a-4056-8bf2-f675851564cf","create_time":"2022-10-12 10:47:41","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/user\/getUesrInfo","mock_url":"user\/getUesrInfo","new_target_id":"9f920791-ca1a-4380-8067-c4fa9ef34b56","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/getUesrInfo","description":"","body":{"mode":"json","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"5d017b98-0749-4c75-90e2-2166d22e21b8","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/getUesrInfo"},"response":{"success":{"raw":"{\r\n\t\"username\": \"Delicia\",\r\n\t\"password\": \"delicia123\",\r\n\t\"avatar\": \"https:\/\/i0.wp.com\/www.groundedgirlsguide.com\/wp-content\/uploads\/2016\/10\/GAYLE-ILLUSTRATED-HEADSHOT-HighRes.png?resize=768%2C846\",\r\n\t\"email\": \"Delicia123@gmail.com\",\r\n\t\"BIO\": \"Welcome to my kitchen\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"26630682-7cad-4afa-a9d1-6afc5efb6a4c","local_parent_id":"0","name":"4. User | user modify profile","method":"PUT","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":3,"create_dtime":1665212977,"update_dtime":1668249663,"target_id":"26630682-7cad-4afa-a9d1-6afc5efb6a4c","create_time":"2022-10-08 15:09:37","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/user\/modifyProfile","mock_url":"user\/modifyProfile","new_target_id":"24ff9a07-84a8-4f46-94e9-5b702b57fd61","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/modifyProfile","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"username\": \"机器猫\",\r\n    \"password\": \"123456update\",\r\n    \"avatar\": \"https:\/\/i0.wp.com\/www.groundedgirlsguide.com\/wp-content\/uploads\/2016\/10\/GAYLE-ILLUSTRATED-HEADSHOT-HighRes.png?resize=768%2C846\",\r\n    \"email\": \"2536379543@qq.com\",\r\n    \"BIO\": \"hi, nice to meet you\",\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJcdTY3M2FcdTU2NjhcdTczMmIiLCJleHBpcnkiOiIyMDIyLTEwLTEyIDA4OjA2OjUyLjU0MTg4MCJ9.ifDDfBx2T3t2F4J8XgmXT0XbBZTLKKIGHfj-2riGVFQ","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"32945199-6e40-4759-8ee4-011a34432b68","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/modifyProfile"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"MODIFY SUCESS\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"58f41f03-07a8-4f1d-8bd1-2276309d9d11","local_parent_id":"0","name":"5. User | user logout","method":"PUT","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":4,"create_dtime":1665213068,"update_dtime":1668249660,"target_id":"58f41f03-07a8-4f1d-8bd1-2276309d9d11","create_time":"2022-10-08 15:11:08","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/user\/logout","mock_url":"user\/logout","new_target_id":"ff230cf5-9166-4613-b38f-7783dbe4d590","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/logout","description":"","body":{"mode":"form-data","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/user\/logout"},"response":{"success":{"raw":"","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"38ab2321-0a7d-4c5c-97f5-3213dc01153c","local_parent_id":"0","name":"6. Recipe | get all recipe brief information (get like if log in, otherwise not)","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":5,"create_dtime":1665033964,"update_dtime":1668249673,"target_id":"38ab2321-0a7d-4c5c-97f5-3213dc01153c","create_time":"2022-10-06 13:26:04","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getAllRecipesBriefInfo","mock_url":"recipe\/getAllRecipesBriefInfo","new_target_id":"30fe00e3-e130-409c-932b-8ae58eeeb1fd","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getAllRecipesBriefInfo","description":"","body":{"mode":"form-data","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"e357bfc9-6381-4e77-a815-22cc624c6476","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getAllRecipesBriefInfo"},"response":{"success":{"raw":"{\n  \"msg\": \"GET RECIPE BRIEF INFO SUCESS\",\n  \"recipe_briefInfo\": [\n    {\n      \"recipe_id\": 1,\n      \"create_time\": \"Mon, 16 May 2022 08:12:17 GMT\",\n      \"contributor_id\": 2,\n      \"contributor\": \"Ying Cheng\",\n      \"name\": \"Kung Pao cauliflower\",\n      \"meal_type\": \"Dinner\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FVvffW4mVMuLqxzEW3WyPS-IYyM0%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-final-photo-extra.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 2,\n      \"create_time\": \"Tue, 17 May 2022 18:46:21 GMT\",\n      \"contributor_id\": 3,\n      \"contributor\": \"Dylan\",\n      \"name\": \"Vegan pulled mushroom burger\",\n      \"meal_type\": \"Lunch\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FMSnusZzx9L-eGI8BL3NpYUaFK4o%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2643-photo-final-1.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 3,\n      \"create_time\": \"Wed, 18 May 2022 19:46:21 GMT\",\n      \"contributor_id\": 5,\n      \"contributor\": \"Devan Grimsrud\",\n      \"name\": \"Kale pesto pasta\",\n      \"meal_type\": \"Lunch\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FI56_EjJC6cBmKwcGLEHaqQzwZhg%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2522-final-photo-new.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 4,\n      \"create_time\": \"Thu, 19 May 2022 20:46:21 GMT\",\n      \"contributor_id\": 4,\n      \"contributor\": \"Kris Li\",\n      \"name\": \"mushroom quesadillas with spicy sour cream\",\n      \"meal_type\": \"Dinner\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2Fs747QN8WUZLPFiysOl_Glqqv3iE%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2547-final-photo-_0.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 5,\n      \"create_time\": \"Fri, 29 Jul 2022 20:46:21 GMT\",\n      \"contributor_id\": 1,\n      \"contributor\": \"Delicia\",\n      \"name\": \"Cauliflower steak with orange-miso sauce\",\n      \"meal_type\": \"Dinner\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FCjlxXyEStLTiGFMbTrCmZddR5Sc%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR1258-photo-final.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 6,\n      \"create_time\": \"Thu, 29 Sep 2022 21:46:21 GMT\",\n      \"contributor_id\": 2,\n      \"contributor\": \"Ying Cheng\",\n      \"name\": \"Romanesco soup with walnut-mint pesto\",\n      \"meal_type\": \"Breakfast\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2F56w9MY3Mzg4SHKW8ziXI2T4LoE0%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR932-photo-final-4x3.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    }\n  ]\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"41bfeefb-d9a7-44f1-8600-30c4ae03e3a0","local_parent_id":"0","name":"7. Recipe | get all recipes from following contributors","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":6,"create_dtime":1665368563,"update_dtime":1668249680,"target_id":"41bfeefb-d9a7-44f1-8600-30c4ae03e3a0","create_time":"2022-10-10 10:22:43","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getFollowingRecipe","mock_url":"recipe\/getFollowingRecipe","new_target_id":"7bc3e956-410b-4975-8338-33fcff3f07cf","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getFollowingRecipe","description":"","body":{"mode":"json","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"3a436792-21f4-4135-8eb2-f2357e8ae59b","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getFollowingRecipe"},"response":{"success":{"raw":"{\n  \"msg\": \"GET FOLLOWING RECIPES SUCESS\",\n  \"recipe_briefInfo\": [\n    {\n      \"recipe_id\": 1,\n      \"create_time\": \"Mon, 16 May 2022 08:12:17 GMT\",\n      \"contributor_id\": 2,\n      \"contributor\": \"Ying Cheng\",\n      \"name\": \"Kung Pao cauliflower\",\n      \"meal_type\": \"Dinner\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FVvffW4mVMuLqxzEW3WyPS-IYyM0%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-final-photo-extra.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 2,\n      \"create_time\": \"Tue, 17 May 2022 18:46:21 GMT\",\n      \"contributor_id\": 3,\n      \"contributor\": \"Dylan\",\n      \"name\": \"Vegan pulled mushroom burger\",\n      \"meal_type\": \"Lunch\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FMSnusZzx9L-eGI8BL3NpYUaFK4o%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2643-photo-final-1.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 5,\n      \"create_time\": \"Fri, 29 Jul 2022 20:46:21 GMT\",\n      \"contributor_id\": 1,\n      \"contributor\": \"Delicia\",\n      \"name\": \"Cauliflower steak with orange-miso sauce\",\n      \"meal_type\": \"Dinner\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FCjlxXyEStLTiGFMbTrCmZddR5Sc%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR1258-photo-final.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    },\n    {\n      \"recipe_id\": 6,\n      \"create_time\": \"Thu, 29 Sep 2022 21:46:21 GMT\",\n      \"contributor_id\": 2,\n      \"contributor\": \"Ying Cheng\",\n      \"name\": \"Romanesco soup with walnut-mint pesto\",\n      \"meal_type\": \"Breakfast\",\n      \"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2F56w9MY3Mzg4SHKW8ziXI2T4LoE0%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR932-photo-final-4x3.jpg&w=1440&q=85\",\n      \"like\": \"no\"\n    }\n  ]\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"294c37f1-78d3-4fa9-a9c3-b9aa3f6dd398","local_parent_id":"0","name":"8. Recipe | like a new recipe","method":"PUT","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":7,"create_dtime":1665731184,"update_dtime":1668249700,"target_id":"294c37f1-78d3-4fa9-a9c3-b9aa3f6dd398","create_time":"2022-10-14 15:06:24","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":-1,"mock_server_url":"","mock_url":"","new_target_id":"fd9a160c-cdec-4b50-887b-5882aba46700","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/likeRecipe","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"recipe_id\": 1,\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"description":"","field_type":"String","is_checked":1,"key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"type":"Text","__DATAKEY__":"c11eed09-4654-46e2-80ac-3a678ae5b472","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/likeRecipe"},"response":{"success":{"raw":"{\r\n  \"msg\": \"Congratuations! You have liked this recipe!\"\r\n}\r\n\r\n\r\n{\r\n\t\"msg\": \"Congratuations! You have disliked this recipe!\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":1,"code":200,"contentType":"json","verifyType":"schema","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":404,"contentType":"json","verifyType":"schema","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"641cdb0f-c37c-48b3-b257-c120598f91db","local_parent_id":"0","name":"9. Recipe | create a new recipe","method":"POST","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":8,"create_dtime":1665058649,"update_dtime":1668249709,"target_id":"641cdb0f-c37c-48b3-b257-c120598f91db","create_time":"2022-10-06 20:17:29","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/createRecipe","mock_url":"recipe\/createRecipe","new_target_id":"63cdc459-b9f2-4f93-91f0-9ccab1369588","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/createRecipe","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"name\": \"爱心牛排\",\r\n    \"ingredients\": [\r\n        {\r\n        \"ingredient_name\": \"egg\",\r\n        \"ingredient_num\": 2,\r\n        \"ingredient_unit\": \"number\"\r\n        },\r\n        {\r\n        \"ingredient_name\": \"salt\",\r\n        \"ingredient_num\": 20,\r\n        \"ingredient_unit\": \"g\"\r\n        }\r\n    ],\r\n    \"method\": [\r\n        {\r\n        \"method_step\": 1,\r\n        \"method_content\": \"第一步\",\r\n        \"method_photo\": \"第一步图\",\r\n        \"method_photo_file_name\": \"第一步图名\",\r\n        },\r\n        {\r\n       \"method_step\": 2,\r\n        \"method_content\": \"第2步\",\r\n        \"method_photo\": \"第2步图\",\r\n        \"method_photo_file_name\": \"第2步图名\", \r\n        }\r\n    ],\r\n    \"picture\": \"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAjCAYAAAAAEIPqAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAnzSURBVFiFVZjdjlvZcYW\/qr1JNtktadKSLHlGo4wzBsYw7MRAboI8RYC8lR8rN8kDJICRSwdwRtYo0kjdzb+za+Wi6hxKTRBNHpJn1669aq1VZf\/xxz\/qPM5sesfGYH\/\/wP7TPYf9HkmYyP9mRATzn5mBhJkAYYCUn0tg5kyCjhEmJoQHnHvnh3\/+J\/7vrz\/x03\/9iY0bArD5t5oXwLzjbhhGhMiVoH94878E8CkCl0Bw2B+IIVpveAVrZstzDt48Aw+B55V5SyCjSaxChMFoxknw+h\/\/wB\/+9V\/4z3\/7d97+6b8xRGgAhpGbNTxvUQlQbYLakOt8wscgjkfOD3tO+wPNnOYNRd7E3ZcMz1lfgrP8LCRkTuCAIxwzJ0xg4AGTG9\/8w9+jR1\/x8tc\/gFnebwk4X2VyHMgERQRSZtrM6SawCFatEUCMIEKsV2tGBBFjgYO7L5mWoLVGREHDdNmYGSZDDmezXHyIfn3D7atvl+OGQER+f4ZVJUZ2gZkwhJCs4rDGmAJkGJ67yU0mPHoDNyLvsEAElMEPMGtLZmaQmAkReDRMzsB4\/M033Dx\/CcAUD6CYzx6ZzVtALX+bB+qYDOQ4mYx+Op2QxBiD7oknmTGNCfMMsDUndCnCpVguyc0\/t1ogS1MKRmVrCL757W+w1Yr94YATYJ514Zfiznsb4rPCFDS3jEHQwWgtM6UIsgaCGIOo4zKMC\/IyM+6tCiOqSAAZmBFL9jqtd8IguvH6d7\/l57sP\/OV\/\/sL18YT3NYzxRSLMshbcGlLkipbwyDfC8\/4NAd4arbcKymnmS2F4ZWHGMyqsWVFWbS+Ls2HeoXVkzjDj5pcvePzyF\/z4\/q98ev+OMYK2WTM0ExkLpWnmElXKzGZSJRR4b50IMSI4j5EsgDGGssgq8OXHCyQq1NYq+HnBKlYSsgMIwdPvf0XbXfP+3TsOhz1g9Ks1k6IKbikJFFGcnxeloldzzBp9tdlg08SIojN3iKhgIer0zXLxGQW0DG4ao7JrywZDuVBEYA6tr3j16+85n46cfv7IiAnrTt9tGcBKhpvPiU1Bi8jXM2cLRAMz\/DwGQQVb9GLWswCt4e6EYAphzfHeqniEOXjv4A3zltivld1zsSbh68azb7\/m\/u6OOByyBMy5un5E4MgcyXHvOB3CsSiIWN5TRWsyp0dMNEuqQ2KazjOokn4MrLIqqcTFISCKAdzbZ0c5Eh4KTGAKuFrTr3d8ur\/Po4+Rn282C6WFBYRIYoOROQbToohCIKMzBoMgpMIzcxkw0z8lLMxyrs+xXd\/3zhhJca7AiMUCtNWa3lbsHx6SyEwcT0fadktvnQ5MDCh84y2DtRKhErWkpYGPMepYhZvRW1KZIpkimcYY05SmRRcRCETEDClwVwq4pdTL0pfcPHlEv1pzf3+HEKfTkYf9nu3NdSqZtwvne9WGr6rw5txDjIFG0N2daZqW9JtAIxY4uLULQ5svHqBWwFsHhDRQTEhnJF9oapjwqw0y4+FwQBKH\/QP3bcMvnz8lgHMEroQEgEuE1+t5zdkuSDjKN3MmgcVjpBqJmAbERa0oU1Q6u+AUpfRGjCVzBvSrDXRfLmgE++OBm2e3+Dq5WpZKrLpn1Fqz91hsBOAq2XP3KsQpzUlcsh0FlYgop2Up8Z6qFTERMZZgZ+X0cm19tb4YLlKojqcTdn3N7ukto5jBvGS9xIyyFxd\/mqTgGmJMZxRTHjPCpJRQ+9JeGIaGmKasbY1BjCPSIEaehinZRHYpnlbsEtPAPTE6RTCZ8zcvXhAyZmdjdZgNAwVjTKBBoiVFr1hlDi2wkupiwHom1YWiTsWW66G8qc0PSy8dI4gp0AhW6\/Ui1O5Oc2eMwf1+z7NXr77wNjNuI8Zi1jKWKK\/qeLFxktsYWIylbYoYjDEIYpHp3K8np8pwOkZLBUQEgVkxCKSct4bhDAWBga1Bwfv3b7n97gVcteR0a9iw1AAVFN0XM1U+DBcj3xZu5uJb7OesNJZSO1PPGIljm7WXS9+IAtDSgQj7TLDSmIH4+PFn\/GbL9e0TpjGl4zMIjWoOVGxVJsxy8z4iymnlNnK9y1G31heVsrKGRvJx+uUswFxoLIGpKFSIGLEwiSkh4uacTieOxyMvvnvNiAkiCAvU0lFrTKXADeTpHDF6wqR6ulrMbHZUGV76iIsttXn3UrmzL7sBzbZNWe3T8QgYK08YeWuYGWNMvP3wnuvnt8iNZsY5WyEKSAsmzFv1q8JnGkKiBDB5McQIXTx0pJfwEhIYiV0g+x1blBVAcYHV\/uMnCLFer0HCe2OzWWNufLz7xPXzZ\/huxyBPLBQYDfe+GLk0TlGCJ4ewpevQ7KzcCUufDOU5ilJm8fkis7VZs1qkCkhSBR1cbTYEorXGdrulu3M6nZl6Y\/fsNpURx6wjOqin83PPgEvALmZ1RnV5AWs9F5+HD8wE\/1klV\/ElRm1u9cpbN1rrWGvsH\/ZM+wPX19dFbyVeQEyD+\/OZl9+95jyS\/52GtTVYZwwYEWAFRQU9IIO0i19YhjxF8LOomJUXIJWqNV9oDWbM+ZJ1DFatc94f2H+6Z7u7rgEPuDfcg+6Nu\/2eZ1+\/xFZrTFZTrchylzBP15iCJ3woDTltBW1VhjwDbua0efyVKCmKyzeh5G\/zjrUV+AqsekwLwlLK437Pw7sPrK52WE+70NuK3hoGHGOCmy2Pnj\/NaZMmmuXIzT1AE2OcEBNS4K31ohQteE3PkHwrLNnFIKpQcsfZMVt1N+6GX0YfSIYrm94YE+\/fvGG327HZbKvog+l0Tk8zJk4WPH71kiNCDrKoOeGMuAY0RMPNZpnMoK189ZzPbLzb0niqzIH7Kj0vswu7uGzcsLaiWSPMcIMPP\/5I653ddrtAr\/eON6MZ3J32PPvVt2jT8y7pkav4WJ7mXoU4KxqJp8VRGUv\/h7X5AiHHreO2ys\/q9zIy4N6SizG8N7rD3Zs3EMFuuyt321ht1lg33MTxfGb7i1t2T55gQ\/jIE5DGRZ09qc+Xvq\/S+lknn+akGEQyUEMqL80FC2mkqiHwmgnON5Po7ty9e8vx4x2Pbh5nc2xGYOmllSOM0Rpf\/933TFM2BTMvL6yGEQFeA71lPncR9HnakYVARF1LzKdAp29xb9mVW6N5z+mQCZrRcJobx4dP3H\/4wM3jJ8u4zWsGmOdn3E8Tz374nqmc3fI99xxjaLYQWALeKsvZeZbvEeicT0YaSBPuZCUzkj89N5OKOotUPly5uZjO\/PzmLbubG7bb3TK0nCdX7o3745nb716zff6U8zT7js8nW6oNyjBWGD0NiXuyrAamqYpz9rlRgxvVJjL7LEolLPJ3FhPD0q2tzFkJfvrzn1mtVnz11S1eHK8QhzJc43wkdhv+9ne\/5zTVFKDELQqNkvh\/1FqfLSgCiHAAAAAASUVORK5CYII=\",\r\n    \"meal_type\": \"Dinner\",\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"03a4918e-3aa6-40df-a143-66fd57b6cab7","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/createRecipe"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"CREATE RECIPE SUCESS\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"5fbebd1c-7e7e-40a3-8ebd-090f6417d0f6","local_parent_id":"0","name":"10. Recipe | update a recipe","method":"PUT","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":9,"create_dtime":1665204544,"update_dtime":1668249732,"target_id":"5fbebd1c-7e7e-40a3-8ebd-090f6417d0f6","create_time":"2022-10-08 12:49:04","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/updateRecipe","mock_url":"recipe\/updateRecipe","new_target_id":"4c3a3bc6-6d03-4e0a-a20d-81febc81ef14","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/updateRecipe","description":"","body":{"mode":"json","parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJcdTY3M2FcdTU2NjhcdTczMmIiLCJleHBpcnkiOiIyMDIyLTEwLTA3IDA1OjQwOjI3LjUwMjEwNSJ9.ad71QRCTxV51EjTbMEbzhLc6Cce7OXUhaEpRkG8JoDw","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"2b9a176c-4a85-4c25-8f0a-305158c715a1","value_var":"","key_var":""}],"raw":"{\r\n    \"recipe_id\": 8,\r\n    \"name\": \"爱心牛排_update\",\r\n    \"ingredients\": [\r\n        {\r\n        \"ingredient_name\": \"egg_update\",\r\n        \"ingredient_num\": 2,\r\n        \"ingredient_unit\": \"number\"\r\n        },\r\n        {\r\n        \"ingredient_name\": \"salt_update\",\r\n        \"ingredient_num\": 20,\r\n        \"ingredient_unit\": \"g\"\r\n        }\r\n    ],\r\n    \"method\": [\r\n        {\r\n        \"method_step\": 1,\r\n        \"method_content\": \"第一步_update\",\r\n        \"method_photo\": \"第一步图\",\r\n        \"method_photo_file_name\": \"第一步图名\",\r\n        },\r\n        {\r\n       \"method_step\": 2,\r\n        \"method_content\": \"第2步_update\",\r\n        \"method_photo\": \"第2步图\",\r\n        \"method_photo_file_name\": \"第2步图名\", \r\n        }\r\n    ],\r\n    \"picture\": \"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAjCAYAAAAAEIPqAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEXRFWHRTb2Z0d2FyZQBTbmlwYXN0ZV0Xzt0AAAnzSURBVFiFVZjdjlvZcYW\/qr1JNtktadKSLHlGo4wzBsYw7MRAboI8RYC8lR8rN8kDJICRSwdwRtYo0kjdzb+za+Wi6hxKTRBNHpJn1669aq1VZf\/xxz\/qPM5sesfGYH\/\/wP7TPYf9HkmYyP9mRATzn5mBhJkAYYCUn0tg5kyCjhEmJoQHnHvnh3\/+J\/7vrz\/x03\/9iY0bArD5t5oXwLzjbhhGhMiVoH94878E8CkCl0Bw2B+IIVpveAVrZstzDt48Aw+B55V5SyCjSaxChMFoxknw+h\/\/wB\/+9V\/4z3\/7d97+6b8xRGgAhpGbNTxvUQlQbYLakOt8wscgjkfOD3tO+wPNnOYNRd7E3ZcMz1lfgrP8LCRkTuCAIxwzJ0xg4AGTG9\/8w9+jR1\/x8tc\/gFnebwk4X2VyHMgERQRSZtrM6SawCFatEUCMIEKsV2tGBBFjgYO7L5mWoLVGREHDdNmYGSZDDmezXHyIfn3D7atvl+OGQER+f4ZVJUZ2gZkwhJCs4rDGmAJkGJ67yU0mPHoDNyLvsEAElMEPMGtLZmaQmAkReDRMzsB4\/M033Dx\/CcAUD6CYzx6ZzVtALX+bB+qYDOQ4mYx+Op2QxBiD7oknmTGNCfMMsDUndCnCpVguyc0\/t1ogS1MKRmVrCL757W+w1Yr94YATYJ514Zfiznsb4rPCFDS3jEHQwWgtM6UIsgaCGIOo4zKMC\/IyM+6tCiOqSAAZmBFL9jqtd8IguvH6d7\/l57sP\/OV\/\/sL18YT3NYzxRSLMshbcGlLkipbwyDfC8\/4NAd4arbcKymnmS2F4ZWHGMyqsWVFWbS+Ls2HeoXVkzjDj5pcvePzyF\/z4\/q98ev+OMYK2WTM0ExkLpWnmElXKzGZSJRR4b50IMSI4j5EsgDGGssgq8OXHCyQq1NYq+HnBKlYSsgMIwdPvf0XbXfP+3TsOhz1g9Ks1k6IKbikJFFGcnxeloldzzBp9tdlg08SIojN3iKhgIer0zXLxGQW0DG4ao7JrywZDuVBEYA6tr3j16+85n46cfv7IiAnrTt9tGcBKhpvPiU1Bi8jXM2cLRAMz\/DwGQQVb9GLWswCt4e6EYAphzfHeqniEOXjv4A3zltivld1zsSbh68azb7\/m\/u6OOByyBMy5un5E4MgcyXHvOB3CsSiIWN5TRWsyp0dMNEuqQ2KazjOokn4MrLIqqcTFISCKAdzbZ0c5Eh4KTGAKuFrTr3d8ur\/Po4+Rn282C6WFBYRIYoOROQbToohCIKMzBoMgpMIzcxkw0z8lLMxyrs+xXd\/3zhhJca7AiMUCtNWa3lbsHx6SyEwcT0fadktvnQ5MDCh84y2DtRKhErWkpYGPMepYhZvRW1KZIpkimcYY05SmRRcRCETEDClwVwq4pdTL0pfcPHlEv1pzf3+HEKfTkYf9nu3NdSqZtwvne9WGr6rw5txDjIFG0N2daZqW9JtAIxY4uLULQ5svHqBWwFsHhDRQTEhnJF9oapjwqw0y4+FwQBKH\/QP3bcMvnz8lgHMEroQEgEuE1+t5zdkuSDjKN3MmgcVjpBqJmAbERa0oU1Q6u+AUpfRGjCVzBvSrDXRfLmgE++OBm2e3+Dq5WpZKrLpn1Fqz91hsBOAq2XP3KsQpzUlcsh0FlYgop2Up8Z6qFTERMZZgZ+X0cm19tb4YLlKojqcTdn3N7ukto5jBvGS9xIyyFxd\/mqTgGmJMZxRTHjPCpJRQ+9JeGIaGmKasbY1BjCPSIEaehinZRHYpnlbsEtPAPTE6RTCZ8zcvXhAyZmdjdZgNAwVjTKBBoiVFr1hlDi2wkupiwHom1YWiTsWW66G8qc0PSy8dI4gp0AhW6\/Ui1O5Oc2eMwf1+z7NXr77wNjNuI8Zi1jKWKK\/qeLFxktsYWIylbYoYjDEIYpHp3K8np8pwOkZLBUQEgVkxCKSct4bhDAWBga1Bwfv3b7n97gVcteR0a9iw1AAVFN0XM1U+DBcj3xZu5uJb7OesNJZSO1PPGIljm7WXS9+IAtDSgQj7TLDSmIH4+PFn\/GbL9e0TpjGl4zMIjWoOVGxVJsxy8z4iymnlNnK9y1G31heVsrKGRvJx+uUswFxoLIGpKFSIGLEwiSkh4uacTieOxyMvvnvNiAkiCAvU0lFrTKXADeTpHDF6wqR6ulrMbHZUGV76iIsttXn3UrmzL7sBzbZNWe3T8QgYK08YeWuYGWNMvP3wnuvnt8iNZsY5WyEKSAsmzFv1q8JnGkKiBDB5McQIXTx0pJfwEhIYiV0g+x1blBVAcYHV\/uMnCLFer0HCe2OzWWNufLz7xPXzZ\/huxyBPLBQYDfe+GLk0TlGCJ4ewpevQ7KzcCUufDOU5ilJm8fkis7VZs1qkCkhSBR1cbTYEorXGdrulu3M6nZl6Y\/fsNpURx6wjOqin83PPgEvALmZ1RnV5AWs9F5+HD8wE\/1klV\/ElRm1u9cpbN1rrWGvsH\/ZM+wPX19dFbyVeQEyD+\/OZl9+95jyS\/52GtTVYZwwYEWAFRQU9IIO0i19YhjxF8LOomJUXIJWqNV9oDWbM+ZJ1DFatc94f2H+6Z7u7rgEPuDfcg+6Nu\/2eZ1+\/xFZrTFZTrchylzBP15iCJ3woDTltBW1VhjwDbua0efyVKCmKyzeh5G\/zjrUV+AqsekwLwlLK437Pw7sPrK52WE+70NuK3hoGHGOCmy2Pnj\/NaZMmmuXIzT1AE2OcEBNS4K31ohQteE3PkHwrLNnFIKpQcsfZMVt1N+6GX0YfSIYrm94YE+\/fvGG327HZbKvog+l0Tk8zJk4WPH71kiNCDrKoOeGMuAY0RMPNZpnMoK189ZzPbLzb0niqzIH7Kj0vswu7uGzcsLaiWSPMcIMPP\/5I653ddrtAr\/eON6MZ3J32PPvVt2jT8y7pkav4WJ7mXoU4KxqJp8VRGUv\/h7X5AiHHreO2ys\/q9zIy4N6SizG8N7rD3Zs3EMFuuyt321ht1lg33MTxfGb7i1t2T55gQ\/jIE5DGRZ09qc+Xvq\/S+lknn+akGEQyUEMqL80FC2mkqiHwmgnON5Po7ty9e8vx4x2Pbh5nc2xGYOmllSOM0Rpf\/933TFM2BTMvL6yGEQFeA71lPncR9HnakYVARF1LzKdAp29xb9mVW6N5z+mQCZrRcJobx4dP3H\/4wM3jJ8u4zWsGmOdn3E8Tz374nqmc3fI99xxjaLYQWALeKsvZeZbvEeicT0YaSBPuZCUzkj89N5OKOotUPly5uZjO\/PzmLbubG7bb3TK0nCdX7o3745nb716zff6U8zT7js8nW6oNyjBWGD0NiXuyrAamqYpz9rlRgxvVJjL7LEolLPJ3FhPD0q2tzFkJfvrzn1mtVnz11S1eHK8QhzJc43wkdhv+9ne\/5zTVFKDELQqNkvh\/1FqfLSgCiHAAAAAASUVORK5CYII=\",\r\n    \"meal_type\": \"Dinner\",\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"c716dcd2-fb6e-4bb0-ace0-5b1d50850e5c","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/updateRecipe"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"UPDATE RECIPE SUCESS\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"b9dc2b56-ff8f-4155-86a9-6e9a13b1c272","local_parent_id":"0","name":"11. Recipe | delete a recipe","method":"PUT","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":10,"create_dtime":1665209604,"update_dtime":1668249738,"target_id":"b9dc2b56-ff8f-4155-86a9-6e9a13b1c272","create_time":"2022-10-08 14:13:24","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/deleteRecipe\/8","mock_url":"recipe\/deleteRecipe\/8","new_target_id":"f0c40a1b-56e9-46a6-821a-ddc379990cba","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/deleteRecipe\/8","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"name\": \"爱心牛排_update\",\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"f46f5a09-d36c-494a-a913-51b97860ea3b","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/deleteRecipe\/8"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"DELETE RECIPE SUCESS\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"32ba523b-b164-44ab-8de8-a8ec1e0f3d2c","local_parent_id":"0","name":"12. Recipe | Get all detail info of a recipe","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":11,"create_dtime":1666626940,"update_dtime":1666969397,"target_id":"32ba523b-b164-44ab-8de8-a8ec1e0f3d2c","create_time":"2022-10-24 23:55:40","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":-1,"mock_server_url":"","mock_url":"","new_target_id":"4af37f0c-f826-4225-b024-760cd96aa4b6","request":{"url":"http:\/\/127.0.0.1:8000\/recipe\/getRecipeDetailInfo\/1","description":"","body":{"mode":"json","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""},"digest":{"username":"","password":"","realm":"","nonce":"","algorithm":"","qop":"","nc":"","cnonce":"","opaque":""},"hawk":{"authId":"","authKey":"","algorithm":"","user":"","nonce":"","extraData":"","app":"","delegation":"","timestamp":"","includePayloadHash":-1},"awsv4":{"accessKey":"","secretKey":"","region":"","service":"","sessionToken":"","addAuthDataToQuery":-1},"ntlm":{"username":"","password":"","domain":"","workstation":"","disableRetryRequest":1},"edgegrid":{"accessToken":"","clientToken":"","clientSecret":"","nonce":"","timestamp":"","baseURi":"","headersToSign":""},"oauth1":{"consumerKey":"","consumerSecret":"","signatureMethod":"","addEmptyParamsToSign":-1,"includeBodyHash":-1,"addParamsToHeader":-1,"realm":"","version":"1.0","nonce":"","timestamp":"","verifier":"","callback":"","tokenSecret":"","token":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0yNyAxMzozMDoyNC40NDY5NzcifQ.Gh-H4hhJLuz9VyC043HjVgFEccq40JZ2JMC6MeV9-EU","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"b560ad70-d227-4430-8410-e5f8c5a0cf0b","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/127.0.0.1:8000\/recipe\/getRecipeDetailInfo\/1"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"SUCCESS\",\r\n\t\"data\": {\r\n\t\t\"recipe_name\": \"Kung Pao cauliflower\",\r\n\t\t\"contributor\": \"Ying Cheng\",\r\n\t\t\"recipe_picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FVvffW4mVMuLqxzEW3WyPS-IYyM0%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-final-photo-extra.jpg&w=1440&q=85\",\r\n\t\t\"meal_type\": \"Dinner\",\r\n\t\t\"create_time\": \"Mon, 16 May 2022 08:12:17 GMT\",\r\n\t\t\"tried\": true,\r\n\t\t\"ingredients\": [\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"cauliflower\",\r\n\t\t\t\t\"ingredient_num\": 600,\r\n\t\t\t\t\"ingredient_unit\": \"g\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"green bell pepper\",\r\n\t\t\t\t\"ingredient_num\": 1,\r\n\t\t\t\t\"ingredient_unit\": \"\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"yellow bell pepper\",\r\n\t\t\t\t\"ingredient_num\": 1,\r\n\t\t\t\t\"ingredient_unit\": \"\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"ginger\",\r\n\t\t\t\t\"ingredient_num\": 1,\r\n\t\t\t\t\"ingredient_unit\": \"tbsp\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"garlic\",\r\n\t\t\t\t\"ingredient_num\": 2,\r\n\t\t\t\t\"ingredient_unit\": \"cloves\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"scallion\",\r\n\t\t\t\t\"ingredient_num\": 1,\r\n\t\t\t\t\"ingredient_unit\": \"\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"light soy sauce\",\r\n\t\t\t\t\"ingredient_num\": 3,\r\n\t\t\t\t\"ingredient_unit\": \"tbsp\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"dark rice vinegar\",\r\n\t\t\t\t\"ingredient_num\": 4,\r\n\t\t\t\t\"ingredient_unit\": \"tsp\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"vegetable broth\",\r\n\t\t\t\t\"ingredient_num\": 120,\r\n\t\t\t\t\"ingredient_unit\": \"ml\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"Sichuan peppercorn\",\r\n\t\t\t\t\"ingredient_num\": 1,\r\n\t\t\t\t\"ingredient_unit\": \"tsp\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"dried chilis\",\r\n\t\t\t\t\"ingredient_num\": 2,\r\n\t\t\t\t\"ingredient_unit\": \"\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"roasted peanuts\",\r\n\t\t\t\t\"ingredient_num\": 20,\r\n\t\t\t\t\"ingredient_unit\": \"g\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"ingredient_name\": \"vegetable oila\",\r\n\t\t\t\t\"ingredient_num\": 3,\r\n\t\t\t\t\"ingredient_unit\": \"tbsp\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"methods\": [\r\n\t\t\t{\r\n\t\t\t\t\"method_step\": 1,\r\n\t\t\t\t\"method_content\": \"Preheat the oven to 220ºC\/430ºF fan. Cut or use your hands to separate the cauliflower into small bite sized-florets. Add the cauliflower florets to a baking sheet lined with parchment paper. ​​Toss the cauliflower in vegetable oil and season with salt. Roast for approx. 18–20 min., until the cauliflowers are cooked and slightly charred.\",\r\n\t\t\t\t\"method_photo\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2Fvx_Rh_rLF2iaPPcRlUAEskjBzK4%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-step-photo-_0.jpg&w=1440&q=85\",\r\n\t\t\t\t\"method_photo_file_name\": \"step 1 picture name\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"method_step\": 2,\r\n\t\t\t\t\"method_content\": \"Meanwhile, roughly cut bell peppers into bite-sized pieces. Mince ginger and garlic. Slice scallions to 2–3 cm\/1 in. pieces, and reserve some of the green parts for garnishing. To make the sauce, in a measuring cup or bowl, mix light soy sauce, dark soy sauce, sugar, dark rice vinegar, vegetable stock, and starch. Whisk until well combined.\",\r\n\t\t\t\t\"method_photo\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FXRg7XGYQmRsOq-17FjcgzqBq8l0%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-step-photo-_1.jpg&w=1440&q=85\",\r\n\t\t\t\t\"method_photo_file_name\": \"step 2 picture name\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"method_step\": 3,\r\n\t\t\t\t\"method_content\": \"In a frying pan, heat vegetable oil over medium heat. Add sichuan peppercorns and dried ​​chili, fry for a minute, then add ginger, garlic and scallion. Fry until fragrant. Then add bell peppers and fry for approx. 2 min. Deglaze with the sauce, then let it simmer for approx. 2–3 min. until it’s thickened and glossy.\",\r\n\t\t\t\t\"method_photo\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FltzE9YNoVqhuR0gTDnOvyk7DeSs%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-step-photo-_2.jpg&w=1440&q=85\",\r\n\t\t\t\t\"method_photo_file_name\": \"step 3 picture name\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"method_step\": 4,\r\n\t\t\t\t\"method_content\": \"Remove the cauliflower from the oven, add to the sauce, and mix until the florets are completely coated. Garnish with the leftover scallions and roasted peanuts. Serve with cooked rice.\",\r\n\t\t\t\t\"method_photo\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FjEutBz1C_9q-BSf8_5N5UTEXOBw%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-step-photo-_4.jpg&w=1440&q=85\",\r\n\t\t\t\t\"method_photo_file_name\": \"step 4 picture name\"\r\n\t\t\t}\r\n\t\t]\r\n\t}\r\n}","parameter":[],"expect":{"name":"成功","isDefault":1,"code":200,"contentType":"json","verifyType":"schema","schema":[],"mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":404,"contentType":"json","verifyType":"schema","schema":[],"mock":""}}},"parent_id":"0"},{"local_target_id":"7f60140d-ffab-40fe-88db-bb644674fab6","local_parent_id":"0","name":"13. Recipe | Get comments of a recipe","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":12,"create_dtime":1666786765,"update_dtime":1668654496,"target_id":"7f60140d-ffab-40fe-88db-bb644674fab6","create_time":"2022-10-26 20:19:25","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getRecipeComment\/2","mock_url":"recipe\/getRecipeComment\/2","new_target_id":"f3773b3b-0bd9-4523-8c20-fc32c7038d51","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com\/recipe\/getRecipeComment\/2","description":"","body":{"mode":"none","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com\/recipe\/getRecipeComment\/2"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"SUCCESS\",\r\n\t\"data\": [\r\n\t\t{\r\n\t\t\t\"comment_time\": \"Tue, 25 Oct 2022 12:16:30 GMT\",\r\n\t\t\t\"comment_username\": \"Kitana T\",\r\n\t\t\t\"content\": \"It's very tasty and pretty straight forward and simple to make.\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"comment_time\": \"Sun, 12 Jun 2022 21:46:21 GMT\",\r\n\t\t\t\"comment_username\": \"peter\",\r\n\t\t\t\"content\": \"It was super delicious. I served the coleslaw separately. And pita rolls are taken\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"comment_time\": \"Wed, 16 Mar 2022 15:16:30 GMT\",\r\n\t\t\t\"comment_username\": \"Paulina Bechtgold\",\r\n\t\t\t\"content\": \"We are such a fan of burgers — really great recipe! These were our first burgers & since then we've been making less sesame oil, the specified amount of vinegar and a little more mayonnaise on the red cabbage. As a result, it sticks better to red cabbage.\"\r\n\t\t}\r\n\t]\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"5f668782-61a0-4f47-9875-10587c4f4b3f","local_parent_id":"0","name":"14. Recipe | Rating for a recipe","method":"POST","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":13,"create_dtime":1666792958,"update_dtime":1668249777,"target_id":"5f668782-61a0-4f47-9875-10587c4f4b3f","create_time":"2022-10-26 22:02:38","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/ratingRecipe","mock_url":"recipe\/ratingRecipe","new_target_id":"bf26817d-bbdc-4d4f-9d20-31f4d32a9276","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/ratingRecipe","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"recipe_id\": 2,\r\n    \"rating\": 1.5\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"bd2f6b64-8a17-4cf2-8740-bcdd9725c851","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/ratingRecipe"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"Rating SUCESS!\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"a14b81dc-8b6f-4423-b7df-aefe03437346","local_parent_id":"0","name":"15. Recipe | Get average rating of a recipe","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":14,"create_dtime":1666794597,"update_dtime":1668249783,"target_id":"a14b81dc-8b6f-4423-b7df-aefe03437346","create_time":"2022-10-26 22:29:57","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getRecipeAverageRating\/1","mock_url":"recipe\/getRecipeAverageRating\/1","new_target_id":"35ca41e8-9be8-4482-bef7-e7de8b7355ca","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getRecipeAverageRating\/1","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"recipe_id\": 7\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMS0xMyAxMDoyMzowOC4zODQ1MTkifQ.X_0n3ImGVv9VHW-tUJ1Rb7XYgz7yj5xIpCBOuXtzc8U","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"365c261c-a6ad-4572-8130-1a1d2e5a16ad","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getRecipeAverageRating\/1"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"Get recipe average rating successfully\",\r\n\t\"recipe_average_rating\": \"3.70\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"0a64a682-a303-4e3d-be4c-2b0d11dd59b1","local_parent_id":"0","name":"16. Recipe | Search recpies","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":15,"create_dtime":1666850441,"update_dtime":1668507703,"target_id":"0a64a682-a303-4e3d-be4c-2b0d11dd59b1","create_time":"2022-10-27 14:00:41","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/searchRecipe","mock_url":"recipe\/searchRecipe","new_target_id":"faa2fb27-8648-45b2-bebc-3568039bb7c2","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/searchRecipe","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"keywords_ingredient\": \"pepper\",\r\n    \"keywords_method\": \"pepper\",\r\n    \"keywords_mealtype\": \"pepper\",\r\n    \"keywords_recipename\": \"pepper\",\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0xOSAxNDoyMjoxMy44ODE0NzEifQ.DU81o7cP9q30PM9FSUULVHlSTzqjDZUkeB4Z4MwN4ws","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"fa554f4b-e357-4edf-b8f3-c912fbad9733","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/searchRecipe"},"response":{"success":{"raw":"1.\r\n{\r\n\t\"msg\": \"Success! Get recipe brief info by recipe name!\",\r\n\t\"recipe\": [\r\n\t\t{\r\n\t\t\t\"recipe_id\": 2,\r\n\t\t\t\"create_time\": \"Tue, 17 May 2022 18:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 3,\r\n\t\t\t\"contributor\": \"Dylan\",\r\n\t\t\t\"name\": \"Vegan pulled mushroom burger\",\r\n\t\t\t\"meal_type\": \"Lunch\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FMSnusZzx9L-eGI8BL3NpYUaFK4o%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2643-photo-final-1.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"yes\"\r\n\t\t}\r\n\t]\r\n}\r\n\r\n2.\r\n{\r\n\t\"msg\": \"Success! Get recipe brief info by contributor!\",\r\n\t\"recipe\": [\r\n\t\t{\r\n\t\t\t\"recipe_id\": 4,\r\n\t\t\t\"create_time\": \"Thu, 19 May 2022 20:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 4,\r\n\t\t\t\"contributor\": \"Kris Li\",\r\n\t\t\t\"name\": \"mushroom quesadillas with spicy sour cream\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2Fs747QN8WUZLPFiysOl_Glqqv3iE%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2547-final-photo-_0.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"no\"\r\n\t\t}\r\n\t]\r\n}\r\n\r\n3.\r\n{\r\n\t\"msg\": \"Success! Get recipe brief info by ingredients!\",\r\n\t\"recipe\": [\r\n\t\t{\r\n\t\t\t\"recipe_id\": 1,\r\n\t\t\t\"create_time\": \"Mon, 16 May 2022 08:12:17 GMT\",\r\n\t\t\t\"contributor_id\": 2,\r\n\t\t\t\"contributor\": \"Ying Cheng\",\r\n\t\t\t\"name\": \"Kung Pao cauliflower\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FVvffW4mVMuLqxzEW3WyPS-IYyM0%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-final-photo-extra.jpg&w=1440&q=85\",\r\n\t\t\t\"ingredients\": \"cauliflower;green bell pepper;yellow bell pepper;ginger;garlic;scallion;light soy sauce;dark rice vinegar;vegetable broth;Sichuan peppercorn;dried chilis;roasted peanuts;vegetable oila\",\r\n\t\t\t\"like\": \"yes\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"recipe_id\": 5,\r\n\t\t\t\"create_time\": \"Fri, 29 Jul 2022 20:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 1,\r\n\t\t\t\"contributor\": \"Delicia\",\r\n\t\t\t\"name\": \"Cauliflower steak with orange-miso sauce\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FCjlxXyEStLTiGFMbTrCmZddR5Sc%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR1258-photo-final.jpg&w=1440&q=85\",\r\n\t\t\t\"ingredients\": \"cauliflower;orange juice;peanuts;scallion;mirin;peanut oil for frying;peanut oil for serving;fleur de sel for serving\",\r\n\t\t\t\"like\": \"no\"\r\n\t\t}\r\n\t]\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"86ec8b61-6399-474f-9908-1f3284a89a59","local_parent_id":"0","name":"17. Recipe | Add comments to a recipe","method":"POST","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":16,"create_dtime":1666883345,"update_dtime":1668654192,"target_id":"86ec8b61-6399-474f-9908-1f3284a89a59","create_time":"2022-10-27 23:09:05","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/addRecipeComments","mock_url":"recipe\/addRecipeComments","new_target_id":"cb4527ae-7a42-40ec-b4ad-cb149b3ecc4c","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/addRecipeComments","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"recipe_id\": 2,\r\n    \"comment_content\": \"I like this recipe!\"\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0xOSAxNDoyMjoxMy44ODE0NzEifQ.DU81o7cP9q30PM9FSUULVHlSTzqjDZUkeB4Z4MwN4ws","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"82b28a76-2149-44b2-83f9-2acd3743689d","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/addRecipeComments"},"response":{"success":{"raw":"","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"95d2f040-80c2-487b-975b-2956baee69c3","local_parent_id":"0","name":"18. Recipe | Get my recipes","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":17,"create_dtime":1667022976,"update_dtime":1668249815,"target_id":"95d2f040-80c2-487b-975b-2956baee69c3","create_time":"2022-10-29 13:56:16","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getMyRecipes","mock_url":"recipe\/getMyRecipes","new_target_id":"edcb7d19-c3a6-476b-8255-c718ac74aa29","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getMyRecipes","description":"","body":{"mode":"none","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":"1","type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0xOSAxNDoyMjoxMy44ODE0NzEifQ.DU81o7cP9q30PM9FSUULVHlSTzqjDZUkeB4Z4MwN4ws","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"b9e4a96a-d314-4b6b-80c7-b80ace2cc3b8","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getMyRecipes"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"Success!\",\r\n\t\"my_recipes\": [\r\n\t\t{\r\n\t\t\t\"recipe_id\": 5,\r\n\t\t\t\"create_time\": \"Fri, 29 Jul 2022 20:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 1,\r\n\t\t\t\"contributor\": \"Delicia\",\r\n\t\t\t\"name\": \"Cauliflower steak with orange-miso sauce\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FCjlxXyEStLTiGFMbTrCmZddR5Sc%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR1258-photo-final.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"no\"\r\n\t\t}\r\n\t]\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"80937307-240e-4117-9563-dd7597b2ede1","local_parent_id":"0","name":"19. Recipe | Get all my tried recipes","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":18,"create_dtime":1667023006,"update_dtime":1668249821,"target_id":"80937307-240e-4117-9563-dd7597b2ede1","create_time":"2022-10-29 13:56:46","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getMyTriedRecipes","mock_url":"recipe\/getMyTriedRecipes","new_target_id":"a97bd1b2-9ed3-46f6-8466-f328f5ff8976","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getMyTriedRecipes","description":"","body":{"mode":"none","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0xOSAxNDoyMjoxMy44ODE0NzEifQ.DU81o7cP9q30PM9FSUULVHlSTzqjDZUkeB4Z4MwN4ws","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"90299a8a-9c8b-4f39-85d3-253641565998","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getMyTriedRecipes"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"Success!\",\r\n\t\"my_recipes\": [\r\n\t\t{\r\n\t\t\t\"recipe_id\": 1,\r\n\t\t\t\"create_time\": \"Mon, 16 May 2022 08:12:17 GMT\",\r\n\t\t\t\"contributor_id\": 2,\r\n\t\t\t\"contributor\": \"Ying Cheng\",\r\n\t\t\t\"name\": \"Kung Pao cauliflower\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FVvffW4mVMuLqxzEW3WyPS-IYyM0%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2724-final-photo-extra.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"yes\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"recipe_id\": 3,\r\n\t\t\t\"create_time\": \"Wed, 18 May 2022 19:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 5,\r\n\t\t\t\"contributor\": \"Devan Grimsrud\",\r\n\t\t\t\"name\": \"Kale pesto pasta\",\r\n\t\t\t\"meal_type\": \"Lunch\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FI56_EjJC6cBmKwcGLEHaqQzwZhg%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2522-final-photo-new.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"yes\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"recipe_id\": 4,\r\n\t\t\t\"create_time\": \"Thu, 19 May 2022 20:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 4,\r\n\t\t\t\"contributor\": \"Kris Li\",\r\n\t\t\t\"name\": \"mushroom quesadillas with spicy sour cream\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2Fs747QN8WUZLPFiysOl_Glqqv3iE%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2547-final-photo-_0.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"no\"\r\n\t\t}\r\n\t]\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"6177193d-cda1-4010-84d2-c1c79b07a234","local_parent_id":"0","name":"20. Recipe | Get all brief info of recommended recipes","method":"GET","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":19,"create_dtime":1667894877,"update_dtime":1668259396,"target_id":"6177193d-cda1-4010-84d2-c1c79b07a234","create_time":"2022-11-08 16:07:57","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/getRecommendedRecipes\/1","mock_url":"recipe\/getRecommendedRecipes\/1","new_target_id":"0d11199f-d770-4210-a14c-2e7b3f9d37c7","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getRecommendedRecipes\/1","description":"","body":{"mode":"none","parameter":[],"raw":"","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/getRecommendedRecipes\/1"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"Success!\",\r\n\t\"my_recipes\": [\r\n\t\t{\r\n\t\t\t\"recipe_id\": 2,\r\n\t\t\t\"create_time\": \"Tue, 17 May 2022 18:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 3,\r\n\t\t\t\"contributor\": \"Dylan\",\r\n\t\t\t\"name\": \"Vegan pulled mushroom burger\",\r\n\t\t\t\"meal_type\": \"Lunch\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FMSnusZzx9L-eGI8BL3NpYUaFK4o%3D%2F768x576%2Fimages.kitchenstories.io%2FwagtailOriginalImages%2FR2643-photo-final-1.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"yes\",\r\n\t\t\t\"following\": \"no\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"recipe_id\": 5,\r\n\t\t\t\"create_time\": \"Fri, 29 Jul 2022 20:46:21 GMT\",\r\n\t\t\t\"contributor_id\": 1,\r\n\t\t\t\"contributor\": \"Delicia\",\r\n\t\t\t\"name\": \"Cauliflower steak\",\r\n\t\t\t\"meal_type\": \"Dinner\",\r\n\t\t\t\"picture\": \"https:\/\/www.kitchenstories.com\/_next\/image?url=https%3A%2F%2Fimages.services.kitchenstories.io%2FCjlxXyEStLTiGFMbTrCmZddR5Sc%3D%2F768x576%2Fimages.kitchenstories.io%2FrecipeImages%2FR1258-photo-final.jpg&w=1440&q=85\",\r\n\t\t\t\"like\": \"yes\",\r\n\t\t\t\"following\": \"no\"\r\n\t\t}\r\n\t]\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"},{"local_target_id":"9a340c75-0489-4cc0-bf49-fd8a7ff690e8","local_parent_id":"0","name":"21 Recipe | Try or untry a recipe","method":"PUT","mark":"developing","is_doc":0,"target_type":"api","example_type":"0","project_id":"18e59174-5117-4214-a07d-60db721c46ad","status":1,"sort":20,"create_dtime":1668003277,"update_dtime":1668259400,"target_id":"9a340c75-0489-4cc0-bf49-fd8a7ff690e8","create_time":"2022-11-09 22:14:37","create_users":{"create_user":"Yinghao","update_user":"Yinghao"},"color":"#3A86FF","enable_server_mock":1,"mock_server_url":"https:\/\/console-mock.apipost.cn\/app\/mock\/project\/2d4bd41c-56e2-44bd-92de-c3f85683cab8\/recipe\/tryRecipe","mock_url":"recipe\/tryRecipe","new_target_id":"f9b3b63f-effe-4b93-87d3-76a9e417037b","request":{"url":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/tryRecipe","description":"","body":{"mode":"json","parameter":[],"raw":"{\r\n    \"recipe_id\": 2,\r\n}","raw_para":[]},"event":{"pre_script":"","test":""},"auth":{"type":"noauth","kv":{"key":"","value":""},"bearer":{"key":""},"basic":{"username":"","password":""}},"header":{"parameter":[{"is_checked":1,"type":"Text","key":"Authorization","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJEZWxpY2lhIiwiZXhwaXJ5IjoiMjAyMi0xMC0xOSAxNDoyMjoxMy44ODE0NzEifQ.DU81o7cP9q30PM9FSUULVHlSTzqjDZUkeB4Z4MwN4ws","not_null":1,"description":"","field_type":"Text","__DATAKEY__":"e1308f4d-f3a4-410d-a730-f34b825d7cfe","value_var":"","key_var":""}]},"query":{"parameter":[]},"cookie":{"parameter":[]},"resful":{"parameter":[]},"url_var":"http:\/\/ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000\/recipe\/tryRecipe"},"response":{"success":{"raw":"{\r\n\t\"msg\": \"Congratuations! You have tried this recipe!\"\r\n}","parameter":[],"expect":{"name":"成功","isDefault":-1,"code":200,"contentType":"json","verifyType":"mock","schema":"","mock":"{}"}},"error":{"raw":"","parameter":[],"expect":{"name":"失败","isDefault":-1,"code":201,"contentType":"json","verifyType":"mock","schema":"","mock":""}}},"parent_id":"0"}]}};
+        apipostData = apipostData.data;
+        consoleLog('apipostData ---- ',apipostData);
+    } catch (e) { }
+
+    if (!_.isEmpty(apipostData)) {
+        if (!_.isArray(apipostData.children)) {
+            apipostData.children = [];
+        }
+
+        // 导航菜单
+        apipostData.children = sortData(apipostData.children, 'ascending');
+
+        // 数据词典（对象，键为target_id）
+        const dataDB = {};
+        const ruleType = (data) => {
+            const d = Object.prototype.toString.call(data);
+            return d.substr(8, d.length - 9);
+        };
+
+        const renderListtoObject = (List) => {
+            if (ruleType(List) === 'Array') {
+                List &&
+                List.forEach((item) => {
+                    if (item.children) {
+                        renderListtoObject(item.children);
+                        dataDB[item.target_id] = item;
+                    } else {
+                        dataDB[item.target_id] = item;
+                    }
+                });
+            }
+        };
+
+        // 搜索
+        $(document).on('input', 'input[name="search-input"]', function () {
+            let keyword = _.toLower($(this).val());
+            let searchResult = [];
+
+            if (keyword == '') {
+                $('.apipost-left-nav-template').find('li').removeClass('is-search-hidden search-toggle');
+            } else {
+
+                if (_.isObject(dataDB) && !_.isEmpty(dataDB)) {
+                    _.forEach(dataDB, function (item) {
+                        consoleLog(_.toLower(item.name), keyword, _.toLower(item.name).indexOf(keyword))
+                        if (_.toLower(item.url).indexOf(keyword) > -1 || _.toLower(item.name).indexOf(keyword) > -1 || _.toLower(item.method).indexOf(keyword) > -1) {
+                            searchResult.push(item.target_id);
+                        }
+                    });
+
+                    if (searchResult.length == 0) {
+                        $('.apipost-left-nav-template').find('li').addClass('is-search-hidden');
+                    } else {
+                        searchResult.forEach(target_id => {
+                            searchResult = _.concat(searchResult, getParentTargetIDs(Object.values(dataDB), target_id));
+                        })
+                    }
+
+                    // 隐藏其他
+                    _.difference(Object.keys(dataDB), searchResult).forEach(hidden_target_id => {
+                        $(`.apipost-left-nav-template li[data-target_id="${hidden_target_id}"]`).addClass('is-search-hidden');
+                        $(`.apipost-left-nav-template li[data-target_id="${hidden_target_id}"][data-type="folder"]`).addClass('search-toggle');
+                    })
+
+                    // 展示结果
+                    searchResult.forEach(show_target_id => {
+                        $(`.apipost-left-nav-template li[data-target_id="${show_target_id}"]`).removeClass('is-search-hidden is-hidden search-toggle');
+                        $(`.apipost-left-nav-template li[data-target_id="${show_target_id}"][data-type="folder"]`).removeClass('search-toggle');
+                    })
+                }
+            }
+        })
+
+        renderListtoObject(apipostData.children);
+
+        // 获取当前的target_id
+        let _target_id = '001';
+        const _urlParas = GetUrlQuery();
+
+        if (_.isObject(_urlParas) && _.isString(_urlParas.target_id)) {
+            _target_id = _urlParas.target_id;
+        }
+
+        // 修改地址栏
+        function changeURLStatic(name, value) {
+            const url = changeURLParam(location.href, name, value); // 修改 URL 参数
+            history.replaceState(null, null, url); // 替换地址栏
+        }
+
+        function changeURLParam(url, name, value) {
+            const reg = eval(`/([?|&]${name}=)[^&]*/gi`);
+            value = value.toString().replace(/(^\s*)|(\s*$)/g, ''); // 移除首尾空格
+            let url2;
+            if (!value) {
+                // remove
+                url2 = url.replace(reg, '');
+            } else if (url.match(reg)) {
+                // edit
+                url2 = url.replace(reg, `$1${value}`);
+            } else {
+                // add
+                url2 = `${url + (url.indexOf('?') > -1 ? '&' : '?') + name}=${value}`;
+            }
+            return url2;
+        }
+
+        // 格式化内容
+        function formatJson(json) {
+            // consoleLog(json, apipostData);
+
+            // name
+            if (json.target_type == 'global') {
+                _.set(json, 'name', '全局公共参数');
+            }
+
+            // mark
+            if (_.has(apipostData, 'project.vars.mark') && _.isArray(apipostData.project.vars.mark)) {
+                const _markedObj = {};
+                apipostData.project.vars.mark.forEach((item) => {
+                    _markedObj[item.key] = item;
+                });
+
+                if (_.isObject(_markedObj[json.mark])) {
+                    _.set(json, 'formatMark', _markedObj[json.mark]);
+                }
+            }
+
+            // time
+            if (_.isNumber(json.create_dtime)) {
+                if (String(json.create_dtime).length == 10) {
+                    _.set(
+                        json,
+                        'format_create_dtime',
+                        dayjs.unix(json.create_dtime).format('YYYY-MM-DD HH:mm:ss')
+                    );
+                }
+
+                if (String(json.create_dtime).length == 13) {
+                    _.set(json, 'format_create_dtime', dayjs(json.create_dtime).format('YYYY-MM-DD HH:mm:ss'));
+                }
+            } else {
+                if (_.isString(json.create_dtime)) {
+                    _.set(json, 'format_create_dtime', json.create_dtime);
+                } else {
+                    _.set(json, 'format_create_dtime', dayjs().format('YYYY-MM-DD HH:mm:ss'));
+                }
+            }
+
+            if (_.isNumber(json.update_dtime)) {
+                if (String(json.update_dtime).length == 10) {
+                    _.set(
+                        json,
+                        'format_update_dtime',
+                        dayjs.unix(json.update_dtime).format('YYYY-MM-DD HH:mm:ss')
+                    );
+                }
+
+                if (String(json.update_dtime).length == 13) {
+                    _.set(json, 'format_update_dtime', dayjs(json.update_dtime).format('YYYY-MM-DD HH:mm:ss'));
+                }
+            } else {
+                if (_.isString(json.update_dtime)) {
+                    _.set(json, 'format_update_dtime', json.update_dtime);
+                } else {
+                    _.set(json, 'format_update_dtime', dayjs().format('YYYY-MM-DD HH:mm:ss'));
+                }
+            }
+
+            // formatMode
+            if (_.has(json, 'request.body.mode')) {
+                switch (json.request.body.mode) {
+                    case 'none':
+                        break;
+                    case 'form-data':
+                        _.set(json, 'request.body.formatMode', 'multipart/form-data');
+                        break;
+                    case 'urlencoded':
+                        _.set(json, 'request.body.formatMode', 'application/x-www-form-urlencoded');
+                        break;
+                    case 'json':
+                        _.set(json, 'request.body.formatMode', 'application/json');
+                        break;
+                    case 'xml':
+                        _.set(json, 'request.body.formatMode', 'application/xml');
+                        break;
+                    case 'javascript':
+                        _.set(json, 'request.body.formatMode', 'application/javascript');
+                        break;
+                    case 'plain':
+                        _.set(json, 'request.body.formatMode', 'text/plain');
+                        break;
+                    case 'html':
+                        _.set(json, 'request.body.formatMode', 'text/html');
+                        break;
+                }
+            }
+
+            if(_.has(json, 'request.auth.type')) {
+                switch (json.request.auth.type) {
+                    case 'noauth':
+                        _.set(json, 'request.authType', '无需认证');
+                        break;
+                    case 'awsv4':
+                        _.set(json, 'request.authType', 'AWS Signature');
+                        break;
+                    case 'basic':
+                        _.set(json, 'request.authType', 'Basic auth');
+                        break;
+                    case 'bearer':
+                        _.set(json, 'request.authType', 'Bearer auth');
+                        break;
+                    case 'digest':
+                        _.set(json, 'request.authType', 'Digest auth');
+                        break;
+                    case 'edgegrid':
+                        _.set(json, 'request.authType', 'Akamai EdgeGrid');
+                        break;
+                    case 'hawk':
+                        _.set(json, 'request.authType', 'Hawk authentication');
+                        break;
+                    case 'kv':
+                        _.set(json, 'request.authType', '私密键值对');
+                        break;
+                    case 'ntlm':
+                        _.set(json, 'request.authType', 'NTLM Authentication');
+                        break;
+                    case 'oauth1':
+                        _.set(json, 'request.authType', 'OAuth 1.0');
+                        break;
+                }
+            }
+
+            json.url = json.request.url;
+            return json;
+        }
+
+        // 加载当前数据
+        function loadData(_target_id,dataDB) {
+
+            // 获取当前的数据信息
+            let _targetData = {};
+
+            // 右侧浮动导航
+            let floatNavs = [];
+
+            if(_target_id == '001'){
+                if (_.isObject(dataDB[_target_id])) {
+                    _targetData = _.cloneDeep(dataDB[_target_id]);
+                } else if (
+                    _.has(apipostData, 'project.vars.request') &&
+                    _.isObject(apipostData.project.vars.request)
+                ) {
+                    _targetData = {
+                        target_type: 'global',
+                        request: apipostData.project.vars.request,
+                    };
+                } else {
+                    _targetData = {
+                        target_type: 'none',
+                        request: {},
+                    };
+                }
+
+                _targetData = formatJson(_targetData);
+
+                $('.apipost-doc-body-nav-list').find('li').removeClass('active');
+                $('.apipost-doc-body-nav-list')
+                    .find(`li[data-target_id="${_target_id}"]`)
+                    .eq(0)
+                    .addClass('active')
+                    .toggleClass('toggle search-toggle');
+
+                // const children_ids = getChildrenTargetIDs(Object.values(dataDB), _target_id);
+                //
+                // if (_.isArray(children_ids)) {
+                //     if (
+                //         $('.apipost-doc-body-nav-list')
+                //             .find(`li[data-target_id="${_target_id}"]`)
+                //             .eq(0)
+                //             .hasClass('toggle')
+                //     ) {
+                //         children_ids.forEach((target_id) => {
+                //             if ($(`li[data-target_id="${target_id}"]`).attr('data-type') == 'folder') {
+                //                 $(`li[data-target_id="${target_id}"]`).addClass('is-hidden toggle');
+                //             } else {
+                //                 $(`li[data-target_id="${target_id}"]`).addClass('is-hidden');
+                //             }
+                //         });
+                //     } else {
+                //         children_ids.forEach((target_id) => {
+                //             if ($(`li[data-target_id="${target_id}"]`).attr('data-type') == 'folder') {
+                //                 $(`li[data-target_id="${target_id}"]`).removeClass('is-hidden toggle');
+                //             } else {
+                //                 $(`li[data-target_id="${target_id}"]`).removeClass('is-hidden');
+                //             }
+                //         });
+                //     }
+                // }
+
+                _targetData.copyData = JSON.parse(JSON.stringify(_targetData));
+                if(_targetData.copyData.target_type == 'example'){
+                    _targetData.copyData.target_type = _targetData.copyData.example_type;
+                }
+
+                // 加载左侧内容
+                const _docContentHtml = template('apipost-doc-wrap-tpl', {
+                    data: _targetData,
+                    target_id: _target_id,
+                });
+
+                $('.apipost-doc-wrap').html(_docContentHtml);
+
+                // 右侧浮动导航
+                floatNavs = [];
+                $('.apipost-doc-wrap').find('h3 ,h4, h5, h6, h7').each((i, item) => {
+                    let text = $(item).attr('data-text');
+                    let id = $(item).attr('id');
+                    if (text) {
+                        floatNavs.push({
+                            text, id,
+                            name: $(item).prop("tagName"),
+                            indent: $(item).prop("tagName").replace(/[^0-9]/ig, "") - 2,
+                        })
+                    }
+                })
+
+                const _floatNavs = template('apipost-float-nav-template-tpl', {
+                    list: floatNavs
+                });
+
+                $('.apipost-float-nav-template').html(_floatNavs);
+
+                // 请求body raw 参数
+                try {
+                    if (_targetData.target_type == 'grpc' || _targetData.example_type == 'grpc') {
+                        $('.request-body-raw-editor-json').each((i, item) => {
+                            let val = $(item).prev('input').val();
+
+                            if(val){
+                                new JsonEditor(
+                                    `#${$(item).attr('id')}`,
+                                    JSON5.parse(val),
+                                    {},
+                                    []
+                                ).load(JSON5.parse(val), []);
+                            }
+                        })
+                    }
+
+                    if (_targetData.target_type == 'api' || _targetData.example_type == 'api') {
+                        let obj = [];
+                        if (_.has(_targetData, 'request.body.raw_para')) {
+                            obj = _targetData.request.body.raw_para.map((itemRaw) => {
+                                const arr = itemRaw.key.split('.');
+                                itemRaw.newKey = arr[arr.length - 1];
+                                return itemRaw;
+                            });
+                        }
+
+                        if($('#request-body-raw-editor-input').length > 0){
+                            new JsonEditor('#request-body-raw-editor-json',
+                                JSON5.parse($('#request-body-raw-editor-input').val()),
+                                {},
+                                obj
+                            ).load(JSON5.parse($('#request-body-raw-editor-input').val()), obj);
+                        }
+                    }
+                } catch (e) { }
+
+                // 响应示例 raw 参数
+                try {
+                    _.forEach(_targetData.response, function (item, key) {
+                        const obj = item.parameter.map((itemRaw) => {
+                            const arr = itemRaw.key.split('.');
+                            itemRaw.newKey = arr[arr.length - 1];
+                            return itemRaw;
+                        });
+
+                        if($(`#response-raw-${key}-json-input`).length > 0){
+                            new JsonEditor(`#response-raw-${key}-json`,
+                                JSON5.parse($(`#response-raw-${key}-json-input`).val()),
+                                {},
+                                obj
+                            ).load(JSON5.parse($(`#response-raw-${key}-json-input`).val()), obj);
+                        }
+                    });
+                } catch (e) { }
+
+                // 更新 url
+                changeURLStatic('target_id', _target_id);
+
+                // 优化 apipost-doc-paras 展示
+                $('.apipost-doc-paras').each((i, item) => {
+                    if ($(item).children().length == 0) {
+                        let _id = $(item).attr('for-id');
+                        let _title = $(`#${_id}`).attr('data-text');
+                        let _tipDiv = `<div class="apipost-no-data">暂无${_title}数据</div>`;
+                        $(item).append(_tipDiv)
+                    }
+                })
+            }else {
+
+                let newdata = Object.values(dataDB)
+                // let LevelArr = []
+                //
+                // function levelTree(arr1, newarr) {
+                //     arr1.forEach(item => {
+                //         if (item.children && item.children.length > 0) {
+                //             newarr.push(item)
+                //             levelTree(item.children, newarr)
+                //         } else {
+                //             newarr.push(item)
+                //         }
+                //     })
+                // }
+                //
+                // levelTree(newdata, LevelArr)
+
+                newdata.forEach(item => {
+                    if (item.local_target_id == _target_id) {
+
+                        _targetData = formatJson(item);
+
+                        $('.apipost-doc-body-nav-list').find('li').removeClass('active');
+                        $('.apipost-doc-body-nav-list')
+                            .find(`li[data-target_id="${_target_id}"]`)
+                            .eq(0)
+                            .addClass('active')
+                            .toggleClass('toggle search-toggle');
+
+                        const children_ids = getChildrenTargetIDs(Object.values(dataDB), _target_id);
+
+                        if (_.isArray(children_ids)) {
+                            if (
+                                $('.apipost-doc-body-nav-list')
+                                    .find(`li[data-target_id="${_target_id}"]`)
+                                    .eq(0)
+                                    .hasClass('toggle')
+                            ) {
+                                children_ids.forEach((target_id) => {
+                                    if ($(`li[data-target_id="${target_id}"]`).attr('data-type') == 'folder') {
+                                        $(`li[data-target_id="${target_id}"]`).addClass('is-hidden toggle');
+                                    } else {
+                                        $(`li[data-target_id="${target_id}"]`).addClass('is-hidden');
+                                    }
+                                });
+                            } else {
+                                children_ids.forEach((target_id) => {
+                                    if ($(`li[data-target_id="${target_id}"]`).attr('data-type') == 'folder') {
+                                        $(`li[data-target_id="${target_id}"]`).removeClass('is-hidden toggle');
+                                    } else {
+                                        $(`li[data-target_id="${target_id}"]`).removeClass('is-hidden');
+                                    }
+                                });
+                            }
+                        }
+
+                        // 加载左侧内容
+                        const _docContentHtml = template('apipost-doc-wrap-tpl', {
+                            data: _targetData,
+                            target_id: _target_id,
+                        });
+
+                        $('.apipost-doc-wrap').html(_docContentHtml);
+
+                        // 右侧浮动导航
+                        floatNavs = [];
+                        $('.apipost-doc-wrap').find('h3 ,h4, h5, h6, h7').each((i, item) => {
+                            let text = $(item).attr('data-text');
+                            let id = $(item).attr('id');
+                            if (text) {
+                                floatNavs.push({
+                                    text, id,
+                                    name: $(item).prop("tagName"),
+                                    indent: $(item).prop("tagName").replace(/[^0-9]/ig, "") - 2,
+                                })
+                            }
+                        })
+
+                        const _floatNavs = template('apipost-float-nav-template-tpl', {
+                            list: floatNavs
+                        });
+
+                        $('.apipost-float-nav-template').html(_floatNavs);
+
+                        // 请求body raw 参数
+                        try {
+                            if (_targetData.target_type == 'grpc' || _targetData.example_type == 'grpc') {
+                                $('.request-body-raw-editor-json').each((i, item) => {
+                                    let val = $(item).prev('input').val();
+
+                                    if(val){
+                                        new JsonEditor(
+                                            `#${$(item).attr('id')}`,
+                                            JSON5.parse(val),
+                                            {},
+                                            []
+                                        ).load(JSON5.parse(val), []);
+                                    }
+                                })
+                            }
+
+                            if (_targetData.target_type == 'api' || _targetData.example_type == 'api') {
+                                let obj = [];
+                                if (_.has(_targetData, 'request.body.raw_para')) {
+                                    obj = _targetData.request.body.raw_para.map((itemRaw) => {
+                                        const arr = itemRaw.key.split('.');
+                                        itemRaw.newKey = arr[arr.length - 1];
+                                        return itemRaw;
+                                    });
+                                }
+
+                                if($('#request-body-raw-editor-input').length > 0){
+                                    new JsonEditor('#request-body-raw-editor-json',
+                                        JSON5.parse($('#request-body-raw-editor-input').val()),
+                                        {},
+                                        obj
+                                    ).load(JSON5.parse($('#request-body-raw-editor-input').val()), obj);
+                                }
+                            }
+                        } catch (e) { }
+
+                        // 响应示例 raw 参数
+                        try {
+                            _.forEach(_targetData.response, function (item, key) {
+                                const obj = item.parameter.map((itemRaw) => {
+                                    const arr = itemRaw.key.split('.');
+                                    itemRaw.newKey = arr[arr.length - 1];
+                                    return itemRaw;
+                                });
+
+                                if($(`#response-raw-${key}-json-input`).length > 0){
+                                    new JsonEditor(`#response-raw-${key}-json`,
+                                        JSON5.parse($(`#response-raw-${key}-json-input`).val()),
+                                        {},
+                                        obj
+                                    ).load(JSON5.parse($(`#response-raw-${key}-json-input`).val()), obj);
+                                }
+                            });
+                        } catch (e) { }
+                        // 更新 url
+                        changeURLStatic('target_id', _target_id);
+                    }
+                    // 优化 apipost-doc-paras 展示
+                    $('.apipost-doc-paras').each((i, item) => {
+                        if ($(item).children().length == 0) {
+                            let _id = $(item).attr('for-id');
+                            let _title = $(`#${_id}`).attr('data-text');
+                            let _tipDiv = `<div class="apipost-no-data">暂无${_title}数据</div>`;
+                            $(item).append(_tipDiv)
+                        }
+                    })
+                })
+            }
+
+            // 折叠导航(移动端)
+            $('.apipost-doc-body-nav,.apipost-doc-body-content').removeClass('open');
+
+            $(document).on('scroll', function (e) {
+                let currentNav= '';
+                let scrollTop = $(document).scrollTop();
+
+                floatNavs.forEach(item => {
+                    if ($(`#${item.id}`).offset()) {
+                        if ($(`#${item.id}`).offset().top > scrollTop && currentNav == '') {
+                            currentNav = item.id
+                            // console.log(currentNav)
+                            $('.apipost-float-nav-template').find(`li[data-id="${currentNav}"]`).addClass('active').siblings().removeClass('active');
+                        }
+                    }
+                })
+                // console.log('请求参数:', $('#请求参数').offset().top, scrollTop)
+            }).on('click', '.apipost-float-nav-template li', function(){
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+
+        }
+
+        // 初始化左侧导航列表
+        const _leftNavHtml = template('apipost-left-nav-template-tpl', {
+            list: apipostData.children,
+            target_id: _target_id,
+        });
+
+        $('.apipost-left-nav-template').html(_leftNavHtml);
+
+        // 初始化项目公共信息
+        $('title').text(`${apipostData.project_name} - Powered by Apipost V7`);
+        $('.apipost-doc-body-nav-title').text(`${apipostData.project_name}`);
+
+        // project-logo
+        if (_.has(apipostData, 'project_logo') && apipostData.project_logo != '') {
+            $('.project-logo').attr('src', apipostData.project_logo);
+        }
+
+        $('.project-logo').on('error', function () {
+            $('.project-logo').attr('src', 'https://img.cdn.apipost.cn/docs/images7/logo.svg');
+        });
+        // consoleLog(apipostData)
+
+        // 复制按钮
+        const clipboard = new ClipboardJS('.copy-clipboard');
+        clipboard.on('success', function (e) {
+            $('.copy-clipboard-success').remove();
+            $(e.trigger).append('<i class="copy-clipboard-success">复制成功</i>');
+            e.clearSelection();
+            $('.copy-clipboard-success').fadeOut(1000);
+            setTimeout(function () {
+                $('.copy-clipboard-success').remove();
+            }, 1500);
+        });
+
+        clipboard.on('error', function (e) { });
+
+        // 优化左侧菜单展示，默认收起
+        // 获取当前的父ID
+        let _target_parent_ids = getParentTargetIDs(Object.values(dataDB), _target_id);
+
+        $('.apipost-left-nav-template').children('li').each((i, item) => {
+            if ($(item).attr('data-type') == 'folder') {
+                if (_target_parent_ids.indexOf($(item).attr('data-target_id')) == -1) {
+                    $(item).addClass('toggle');
+                } else {
+                    $(item).removeClass('toggle');
+                }
+            }
+
+            //if($(item).attr('data-type') != 'example') {
+                if ($(item).attr('data-parent_id') != '0' && _target_parent_ids.indexOf($(item).attr('data-target_id')) == -1 && $(item).attr('data-target_id') != _target_id) {
+                    $(item).addClass('is-hidden');
+                } else {
+                    $(item).removeClass('is-hidden');
+                }
+            //}
+        })
+
+        // 同级展示
+        if (dataDB[_target_id]) {
+            // $('.apipost-left-nav-template').children(`li[data-parent_id="${dataDB[_target_id].parent_id}"]`).removeClass('is-hidden');
+            _target_parent_ids.forEach(_parent_id => {
+                $('.apipost-left-nav-template').children(`li[data-parent_id="${_parent_id}"]`).removeClass('is-hidden');
+            })
+        }
+
+        // alert(dataDB)
+        // 加载单接口信息
+        loadData(_target_id, dataDB);
+
+        // 绑定事件
+        $(document).on('click', '.mobile-nav-toggle-link-btn', function () { // 移动端导航
+            $('.apipost-doc-body-nav,.apipost-doc-body-content').addClass('open');
+        }).on('click', '.load-data-btn', function () { // 加载数据
+            let target_id = $(this).attr('data-target_id');
+            // let parent_id = $(this).attr('data-parent_id');
+            // let target_type = $(this).attr('data-type');
+            // let indent = $(this).attr('data-indent');
+
+            // 加载单条数据
+            loadData(target_id, dataDB);
+        }).on('click', '.export-download-btn', function () { // 导出文档
+            $(this).next('ul').toggleClass('is-hidden');
+        })
+    } else {
+        // 空数据
+        // consoleLog('null')
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a046ce178828e393614822a297b8d296";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+
+</html>

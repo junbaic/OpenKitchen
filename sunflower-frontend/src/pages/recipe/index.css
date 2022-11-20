@@ -1,0 +1,220 @@
+/* antd replace  */
+.ant-btn-primary {
+    height: 2.5rem;
+    background-color: rgba(250, 245, 240);
+    color: #33319f;
+    border: 1px solid #33319f;
+    border-radius: 4px;
+}
+
+.ant-btn-primary span {
+    color: #3F1899;
+    font-size: 15px;
+    font-weight: 500;
+}
+/* recipe container */
+.recipe-container{
+    background: rgba(250, 245, 240);
+}
+.title-name{
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 0;
+    font-family: "Lyon Text Web Semibold";
+}
+.recipe-section{
+    background-color: white;
+    margin-bottom: 6rem;
+    border-radius: 17px;
+    padding: 0.5rem 2rem 1rem 3rem;
+}
+.recipe-content-container{
+    padding: 1rem 0;
+}
+.info-row{
+    margin:1rem 0.5rem 0.5rem;
+    display: flex;
+}
+
+.info-title{
+    font-size: 1.5rem;
+    font-family: "TT commons"
+}
+
+.input-default{
+    border-radius: 4px;
+}
+
+.info-description{
+    font-family: "TT commons"
+}
+
+.info-row-input{
+    height: 3rem;
+    border-radius: 4px;
+}
+
+.align-left{
+    display: flex;
+}
+
+.recipe-add{
+    display: flex;
+    justify-content: center;
+}
+.method-photo{
+    height: 2rem;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.margin-col{
+    margin: 1rem 0
+}
+
+/* recipe detail */
+.recipe-detail-container{
+    background-color: white;
+}
+.recipe-content-breadcrumb{
+    margin: 1rem;
+}
+.recipe-detail-content{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.detail-items{
+    margin: 1rem 0;
+}
+.recipe-detail-photo{
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+}
+
+.inner-link {
+    width: 100%;
+    padding: 1rem 0;
+    background-color: rgba(255,245,234);
+    font-weight: bolder;
+    color:#ffa500;
+}
+.inner-link a{
+    color:#ffa500;
+    text-decoration: underline;
+    margin: 0 1rem;
+}
+.detail-content{
+    margin: 0 1rem;
+}
+
+.detail-like{
+    cursor: pointer;
+    margin: 1rem;
+}
+
+.recipe-detail-name{
+    font-family: "Lyon Text Web Semibold";
+    font-weight: bolder;
+}
+.detail-name-content{
+    white-space: nowrap;
+    width: 10rem;
+    text-overflow: ellipsis;
+    margin-right: 1rem;
+}
+.recipe-detail-author{
+    display: flex;
+}
+.recipe-detail-author-detail{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+.items-title{
+    margin-right: auto;
+    font-family: "Lyon Text Web Semibold";
+}
+
+.detail-ingredient{
+    display: flex;
+}
+.detail-ingredient-num-container{
+    width: 8rem;
+    text-align: left;
+    font-weight: bolder;
+}
+.detail-ingredient-num{
+    padding-right: 0.5rem;
+}
+
+.detail-ingredient-name{
+    white-space: nowrap;
+}
+.method-container{
+    display: flex;
+    flex-direction: column;
+}
+.method-content{
+    margin: 1rem 0;
+    font-size: 18px;
+}
+.method-content-img{
+    width: 100%;
+}
+.comment-edit-container{
+    display: flex;
+    width: 100%;
+}
+
+.comment-input{
+   margin-left: 1rem;
+   width: 80%;
+}
+
+.comment-input> .ant-input{
+    border-radius: 15px;
+}
+
+.comment-submit{
+    float: right;
+    bottom: 40px;
+    background-color: green;
+    color: white;
+    border-radius: 15px;
+}
+.comment-user-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 1rem;
+    text-align: left;
+}
+.comment-content{
+    padding-left: 3rem;
+}
+.recipe-detail-recommend{
+    display: flex;
+}
+.tried-recipes-grid {
+ width: 100%;
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  position: relative;
+  margin: 0.5rem;
+  line-height: 1.5;
+  font-size: 125%;
+}

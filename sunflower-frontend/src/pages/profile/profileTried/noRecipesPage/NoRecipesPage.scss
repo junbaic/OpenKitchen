@@ -1,0 +1,63 @@
+.empty-state{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-state--img{
+    margin-top: 16px;
+    margin-bottom: 8px;
+    max-width: 100%;
+}
+
+.empty-state--title{
+    margin-top: 0;
+    margin-bottom: 8px;
+    font: {
+        size: 1.25rem;
+        weight: 500;
+        family: "Lyon Text Web Semibold";
+    }
+    line-height: 1.25;
+    
+}
+
+.empty-state--paragraph{
+    width: 100%;
+    text-align: center;
+    margin: 0 0 24px;
+    font: {
+        size: 1rem;
+        weight: 400;
+        family: "TT commons";
+    }
+    
+}
+
+.empty-state--button{
+    margin-bottom: 24px;
+    text-align: center;
+    background-color: #33319f;
+    border: 1px solid transparent{
+        radius: 0.25rem;
+    }
+    color: #faf5f0;
+    font: {
+        size: 1rem;
+        weight: 500;
+        family: "TT commons";
+    }
+    letter-spacing: .04em;
+    line-height: 1.2;
+    margin: 0;
+    min-width: 6.25rem;
+    overflow: hidden;
+    padding: 0.75em 0.5em;
+    word-spacing: 0.04em;
+    cursor: pointer;
+    &:hover{
+        background-color: #5c5ab2;
+        color: #faf5f0;
+        text-decoration: none;
+    }
+}

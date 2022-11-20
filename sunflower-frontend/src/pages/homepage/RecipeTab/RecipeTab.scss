@@ -1,0 +1,60 @@
+// $max-width: 57.75rem;
+$recipes-font-size: 125%;
+.RecipeTab--title__alignLeft {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+    font-family: 'Lyon Text Web Semibold';
+}
+
+.NoRecipes{
+    font-family: 'TT commons';
+    grid-column: auto/span 9;
+}
+
+.RecipeTab-content{
+    padding: 0 1.2rem;
+    margin: 0 auto;
+    max-width: 65rem;
+    position: relative;
+}
+
+.RecipeTab-content::after{
+    content: "";
+    background-color: #e1ddd8;
+    width: 100%;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    height: 1px;
+}
+
+.Recipes-list{
+    width: 100%;
+    grid-auto-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(9,1fr);
+    grid-gap: 1rem;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    // max-width: $max-width;
+    position: relative;
+    margin: 0;
+    // row-gap: 4em;
+    line-height: 1.5;
+    font-size: $recipes-font-size;
+    .Recipes-item{
+        height: 100%;
+        width: 100%;
+        display: flex;
+    }
+}
+
+.RecipesTab--button__more{
+    display: flex;
+    justify-content: flex-end;
+}
+

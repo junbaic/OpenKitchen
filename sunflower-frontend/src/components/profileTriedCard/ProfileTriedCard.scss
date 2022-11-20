@@ -1,0 +1,61 @@
+.recipe-card-container{
+    cursor: pointer;
+    grid-column: auto/span 3;
+    width: 100%;
+    flex: 0 0 22%;
+}
+
+.photo-container{
+    overflow: hidden;
+    border-radius: 1.8rem;
+    width: 100%;
+    height: 100%;
+}
+.recipe-photo{
+    display: block;
+    border-radius: 1.8rem;
+    margin: 0 0 0.5rem;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    &:hover{
+        transform: scale(1.1, 1.1);
+    }
+}
+
+.recipe-name{
+    font: {
+        weight: 500;
+        size: 1rem;
+        family: 'TT commons medium';
+    }
+    line-height: 1.35;
+    color: #212121;
+}
+
+.recipe-name-container{
+    position: relative;
+    
+}
+.RecipeCard--like-container{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.RecipeCard--author-name{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe-author{
+    font: {
+        family: 'TT commons medium';
+        size: 18px;
+    }
+    color: #33319f;
+    
+}

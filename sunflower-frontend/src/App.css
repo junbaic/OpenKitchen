@@ -1,0 +1,9 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+.page-container{
+  margin-top: 66px;
+}

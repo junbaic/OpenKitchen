@@ -1,0 +1,80 @@
+.profile-recipes--grid-container {
+  margin-bottom: 2rem;
+}
+
+.recipes-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 2rem;
+  row-gap: 2.3rem;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  max-width: 57.75rem;
+  position: relative;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 125%;
+}
+
+.create-new-recipe-button {
+  grid-column: auto/span 3;
+  align-self: start;
+  flex: 0 0 22%;
+  cursor: pointer;
+  color: #33319f;
+  font-weight: 700;
+  line-height: 1.3;
+  background: none;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+.create-new-recipe-button::before {
+  display: inline-block;
+  width: 1px;
+  content: "";
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.button-content {
+  align-items: center;
+  background-color: #faf5f0;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.button-icon {
+  display: inline-block;
+  border: 2px solid;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.button-text {
+  font-weight: 500;
+  font-family: "TT commons medium";
+}
+
+a {
+  text-decoration: none;
+  color: #33319f;
+}
+a:hover {
+  color: #33319f;
+}
+
+/*# sourceMappingURL=ProfileRecipes.css.map */

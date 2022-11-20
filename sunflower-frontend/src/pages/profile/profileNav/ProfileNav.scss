@@ -1,0 +1,33 @@
+$max-width: 57.75rem;
+
+.ProfileNav{
+    font-family: 'TT commons';
+    margin: 0 auto 1.5rem auto;
+    padding: 0 1.2rem;
+    max-width: $max-width;
+    width: 100%;
+    .nav--icon{
+        margin-right: 0.25rem;
+        display: inline-block;
+        font-size: 20px;
+    }
+    .nav--item-name{
+        color: #212121;
+        font-weight: 700;
+        letter-spacing: .08em;
+        word-spacing: 0.08em;
+        text-align: center;
+        font-size: 98.5%;
+        text-transform: uppercase;
+        padding: 0 0.4rem;
+    }
+}
+
+.profile-Tab-content--container{
+    padding: 0 1.2rem;
+    margin: 0 auto;
+    max-width: $max-width;
+    width: 100%;
+}
+
+

@@ -1,0 +1,60 @@
+.userInfo-container{
+    background: rgba(250, 245, 240);
+}
+.title-name{
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 0;
+    font-family: "Lyon Text Web Semibold";
+}
+.info-section{
+    background-color: white;
+    margin-bottom: 6rem;
+    border-radius: 17px;
+    padding: 0.5rem 2rem 1rem 3rem;
+}
+.userInfo-content-container{
+    padding: 1rem 0;
+}
+.info-row{
+    margin:1rem 0.5rem 0.5rem;
+    display: flex;
+}
+
+.info-title{
+    font-size: 1.5rem;
+}
+
+.input-default{
+    border-radius: 4%;
+}
+
+.info-row-input{
+    height: 3rem;
+    border-radius: 4px;
+}
+
+.align-left{
+    display: flex;
+}
+
+.info-btn{
+    display: flex;
+    justify-content: center;
+    margin:1rem 0.5rem 0.5rem;
+}
+.method-photo{
+    height: 2rem;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.margin-col{
+    margin: 1rem 0
+}
+.edit--avatar-container{
+    display: flex;
+    margin:1rem 0.5rem 0.5rem;
+}

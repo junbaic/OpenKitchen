@@ -1,0 +1,104 @@
+.profile--header {
+  display: grid;
+  margin: 0 auto 1rem auto;
+  padding: 0 1.2rem;
+  max-width: 57.75rem;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 1.5rem;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.profile--header-setting {
+  right: 1.2rem;
+  position: absolute;
+  top: 0;
+  font-family: "TT commons";
+}
+
+.profile--avatar-container {
+  grid-column: 1/-1;
+  grid-column-end: 4;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile--setting-link {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  background-color: #faf5f0;
+  border: 1px solid #33319f;
+  border-radius: 0.25rem;
+  color: #33319f;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin: 0;
+  overflow: hidden;
+  text-decoration: none;
+}
+.profile--setting-link:hover {
+  background-color: #33319f;
+  color: #faf5f0;
+}
+
+.setting-icon {
+  margin-right: 0.5rem;
+  font-size: 15px;
+  padding: 3.5px;
+}
+
+.Setting-link--text {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  font-size: 125%;
+}
+
+.profile--header-info_alignLeft {
+  grid-column: 1/-1;
+  flex: 1 1 10rem;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(9, 1fr);
+  display: grid;
+  text-align: left;
+  grid-column-start: 4;
+  padding-right: unset;
+}
+
+.header--user-info {
+  grid-column: 1/-1;
+  max-width: 100%;
+  font-family: "Lyon Text Web Semibold";
+}
+.header--user-info .header--user-info__name {
+  margin-top: 0;
+  font-size: 2.7rem;
+  padding-right: 2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 0;
+  max-width: 100%;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.header--user-bio {
+  display: flex;
+  grid-column: 1/-1;
+  justify-content: flex-start;
+  align-items: center;
+  line-height: 1.5;
+  font-size: 125%;
+  font-family: "TT commons";
+}
+.header--user-bio .header--user-bio__text {
+  margin: 0;
+}
+
+/*# sourceMappingURL=ProfileHeader.css.map */
