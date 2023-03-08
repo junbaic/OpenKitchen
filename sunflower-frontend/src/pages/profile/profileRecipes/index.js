@@ -15,7 +15,7 @@ const ProfileRecipes = () => {
     };
     const fetchRecipes = async () => {
       try{
-        const { data } = await axios.get('http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/recipe/getMyRecipes', config);
+        const { data } = await axios.get('http://127.0.0.1:8000/recipe/getMyRecipes', config);
         const { my_recipes } = data;
         const recipesList = my_recipes.map((recipe) => ({ id: recipe['recipe_id'], recipeName: recipe['name'], photo: recipe['picture'], authorName: recipe['contributor'], mealType: recipe['meal_type'], like: recipe['like'], following: 'yes'}));
         setAllRecipes(recipesList);

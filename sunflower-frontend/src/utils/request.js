@@ -6,7 +6,7 @@ import { message } from "antd";
 const service = axios.create({
   // api_url
   //baseURL: 'http://127.0.0.1:8000',
-  baseURL: 'http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000',
+  baseURL: 'http://127.0.0.1:8000',
   // request timeout
   timeout: 10 * 60 * 1000, 
 });

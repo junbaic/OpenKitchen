@@ -17,13 +17,13 @@ const ProfileTriedCard = ({recipeId, author, title, picture, like, following}) =
                 };
 
     const toggleLikeRequest = async () => {
-        const {data} = await axios.put('http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/recipe/likeRecipe', {recipe_id: recipeId},config);
+        const {data} = await axios.put('http://127.0.0.1:8000/recipe/likeRecipe', {recipe_id: recipeId},config);
         setIsLike(!isLike);
         setIsUpdate(!isUpdate);
         message.success(data.msg);
     }
     const toggleFollowRequest = async () => {
-        const {data} = await axios.put('http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/user/followingUser', {recipe_id: recipeId},config);
+        const {data} = await axios.put('http://127.0.0.1:8000/user/followingUser', {recipe_id: recipeId},config);
         setIsFollow(!isFollow);
         setIsUpdate(!isUpdate);
         message.success(data.msg);

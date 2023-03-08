@@ -31,7 +31,7 @@ export default function Register() {
   const [form] = Form.useForm();
   const time = new Date().toJSON().slice(0, 19).replace("T", " "); //time 1
   const handleSubmit = values => {
-    axios.post("http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/user/register", values)
+    axios.post("http://127.0.0.1:8000/user/register", values)
       .then(function (response) {
         message.success('Welcome to OpenKitchen');
         window.localStorage.token = response.data.token;

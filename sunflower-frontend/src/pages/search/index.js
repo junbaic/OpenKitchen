@@ -9,7 +9,7 @@ const HomePage = () => {
     const params = useParams();
 
     useEffect(() => {
-        const searchUrl = 'http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/recipe/searchRecipe/'+params.keywords;
+        const searchUrl = 'http://127.0.0.1:8000/recipe/searchRecipe/'+params.keywords;
 
         const getRecipes = async () => {
             try {

@@ -31,7 +31,7 @@ export default function Login() {
   };
 
   const onFinish = values => {
-    axios.post("http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/user/login", values)
+    axios.post("http://127.0.0.1:8000/user/login", values)
       .then( res => {
         message.success('Welcome back!');
         window.localStorage.token = res.data.token;

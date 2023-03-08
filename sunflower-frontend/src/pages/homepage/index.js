@@ -22,9 +22,9 @@ const HomePage = () => {
                 const { data } = 
                 isLogged
                 ?
-                await axios.get('http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/recipe/getAllRecipesBriefInfo', config)
+                await axios.get('http://127.0.0.1:8000/recipe/getAllRecipesBriefInfo', config)
                 : 
-                await axios.get('http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/recipe/getAllRecipesBriefInfo')
+                await axios.get('http://127.0.0.1:8000/recipe/getAllRecipesBriefInfo')
                 const { recipe_briefInfo } = data;
                 const recipes = recipe_briefInfo.map(recipe => ({ id: recipe['recipe_id'], recipeName: recipe['name'], photo: recipe['picture'], authorName: recipe['contributor'], like: recipe['like'], following: recipe['following'] }));
                 setAllRecipes(recipes);
@@ -39,7 +39,7 @@ const HomePage = () => {
     useEffect(() => {
         const getFollowingRecipes = async () => {
             try {
-                const { data } = await axios.get('http://ec2-52-194-185-52.ap-northeast-1.compute.amazonaws.com:8000/recipe/getFollowingRecipe', config);
+                const { data } = await axios.get('http://127.0.0.1:8000/recipe/getFollowingRecipe', config);
                 const { recipe_briefInfo } = data;
                 const recipes = recipe_briefInfo.map(recipe => ({ id: recipe['recipe_id'], recipeName: recipe['name'], photo: recipe['picture'], authorName: recipe['contributor'], like: recipe['like'], following: recipe['following']  }));
                 setFollowingRecipes(recipes);

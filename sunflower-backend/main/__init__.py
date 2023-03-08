@@ -3,11 +3,11 @@ from flask import Flask
 from flask_cors import *
 
 db = SQLAlchemy()
-HOSTNAME = 'comp9900database.cugl4hvapyl5.ap-northeast-1.rds.amazonaws.com'
+HOSTNAME = 'localhost'
 PORT = '3306'
-DATABASE = 'comp9900_db'
+DATABASE = '9900_db'
 USERNAME = 'root'
-PASSWORD = 'comp9900'
+PASSWORD = '201199'
 DB_URL = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(USERNAME, PASSWORD, HOSTNAME, PORT, DATABASE)
 
 
